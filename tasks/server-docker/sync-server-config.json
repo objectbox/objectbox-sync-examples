@@ -1,0 +1,9 @@
+{
+    "dbDirectory": "objectbox",
+    "dbMaxSize": "100G",
+    "modelFile": "objectbox-model.json",
+    "bind": "ws://0.0.0.0:9999",
+    "adminBind": "http://127.0.0.1:9980",
+    "adminThreads": 4,
+    "unsecuredNoAuthentication": true
+}

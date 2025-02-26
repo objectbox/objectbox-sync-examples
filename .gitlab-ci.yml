@@ -1,0 +1,61 @@
+# Default image for Linux builds
+image: objectboxio/buildenv-android:2023-08-29
+
+variables:
+  # Disable the Gradle daemon. Gradle may run in a Docker container with a shared
+  # Docker volume containing GRADLE_USER_HOME. If the container is stopped after a job
+  # Gradle daemons may get killed, preventing proper clean-up of lock files in GRADLE_USER_HOME.
+  # Use low priority processes to avoid Gradle builds consuming all build machine resources.
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.priority=low"
+
+stages:
+  - test
+
+build-and-test:
+  stage: test
+  tags: [ docker, x64 ]
+  script:
+    
+    - echo "➡️ Building client-java..."
+    - cd tasks/client-java
+    - git update-index --chmod=+x gradlew
+    - ./gradlew clean build
+    - echo "✅ Building client-java...DONE"
+    - cd ../..
+
+    - echo "➡️ Building client-android-java..."
+    - cd tasks/client-android-java
+    - git update-index --chmod=+x gradlew
+    - ./gradlew clean build
+    - echo "✅ Building client-android-java...DONE"
+    - cd ../..
+
+    - echo "➡️ Building client-android-kotlin..."
+    - cd tasks/client-android-kotlin
+    - git update-index --chmod=+x gradlew
+    - ./gradlew clean build
+    - echo "✅ Building client-android-kotlin...DONE"
+    - cd ../..
+
+  artifacts:
+    when: always
+    paths:
+      - "**/build/reports/lint-results-debug.html"
+    reports:
+      junit: "**/build/test-results/**/TEST-*.xml"
+
+# run-cli-app:
+#   stage: test
+#   tags: [ docker, x64 ]
+#   needs: ["build-and-test"]
+#   before_script:
+#     # "|| true" for an OK exit code if path not found
+#     - rm -r java-main/objectbox-notes-db || true
+#     - rm -r kotlin-main/objectbox-notes-db || true
+#   script:
+#     - ./gradlew java-main:run
+#     # Run again with existing database.
+#     - ./gradlew java-main:run
+#     - ./gradlew kotlin-main:run
+#     # Run again with existing database.
+#     - ./gradlew kotlin-main:run
