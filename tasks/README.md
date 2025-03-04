@@ -2,55 +2,23 @@
 
 This directory contains a simple 'task manager' app built with different ObjectBox Sync client SDKs for use with the ObjectBox Sync Server.
 
-## Available Examples
+### Use-case
 
-1. `client-java`: Uses the Sync Java client-side APIs to build a command-line task-manager app
+To demonstrate the capabilities of ObjectBox Sync, the examples below showcase a simple task manager app that allows users to:
 
-2. `client-android-java`: Demonstrates the usage of Sync client-side SDK for Java in an Android app
+- Create a new task with a description
+- Mark a task as completed
+- List all tasks or just the completed tasks
+- Delete a task
 
-3. `client-android-kotlin`: Demonstrates the usage of Sync client-side SDK for Kotlin in an Android app
+The following examples are available:
 
-## Using The Examples
+1. [`client-java`](./client-java/): Uses the Sync Java client-side APIs to build a command-line task-manager app
 
-### Using the `client-java` example
+2. [`client-android-java`](./client-android-java/): Demonstrates the usage of Sync client-side SDK for Java in an Android app
 
-#### Intellij Idea
+3. [`client-android-kotlin`](./client-android-kotlin/): Demonstrates the usage of Sync client-side SDK for Kotlin in an Android app
 
-1. Open the `client-java` directory in Intellij Idea. Opening the directory in Intellij Idea should automatically start building the project with Gradle.
+4. [`client-flutter`](./client-flutter/): Demonstrates the usage of Sync client-side SDK for Dart in a Flutter app
 
-2. On a successful Gradle build, right-click the `app/src/main/java/io/objectbox/example/Main.java` file and select the **Run 'Main.main()'** option.
-
-#### Other IDEs
-
-1. Open the `client-java` directory in an IDE of your choice. 
-2. In the directory, execute the following command to build and run the CLI application:
-
-```bash
-./gradlew run
-```
-
-### Using the `client-android-java` and `client-android-kotlin` examples
-
-1. Open the `client-android-java`/`client-android-kotlin` directory in Android Studio. A project build is initiated automatically; if not select the **Build > Build Project** from the toolbar.
-2. After a successful project build, [connect an Android device](https://developer.android.com/studio/run/device) to your system. Once connected, the name of the device must be visible in top menu-bar in Android Studio. Click on the 'Play' button to run the app on the test-device.
-
-### Using the `client-flutter` example
-
-Open the `client-flutter` directory in an IDE and execute the following commands in a terminal:
-
-```
-# Set up project, get latest dependencies
-flutter pub upgrade
-
-# Generate model and code files for ObjectBox
-dart run build_runner build
-
-# Run the app in debug mode
-flutter run
-```
-
-### Using the `client-go` example
-
-```shell
-$ go build main.go
-```
+5. [`client-go`](./client-go/): Demonstrates the usage of Sync client-side SDK for Go to build a command-line task-manager app

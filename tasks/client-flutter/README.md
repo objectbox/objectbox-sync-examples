@@ -1,12 +1,10 @@
-# objectbox_demo_sync
-
-## Getting Started with ObjectBox Sync in Flutter / Dart
+# `client-flutter` Sync Example: Using the Sync Client in a Flutter app
 
 This project contains the Flutter version of the Sync example from the [objectbox-examples](https://github.com/objectbox/objectbox-examples) repository.
 
 You need to have a Sync Trial and run the Sync Server to run the demo --> Apply for the [Sync Trial here](https://objectbox.io/sync/).
 
-Also, do check out the [Sync Docs](https://sync.objectbox.io/).
+### Setup
 
 The basic steps to get this demo running (assuming you have a working Flutter setup):
 
@@ -22,3 +20,9 @@ flutter run
 ```
 
 Optional: depending on your setup you might have to adjust the Sync server address in [objectbox.dart](/lib/objectbox.dart).
+
+### Docs
+
+- [Sync Client](https://sync.objectbox.io/sync-client)
+- [ObjectBox Flutter API](https://docs.objectbox.io/getting-started)
+- [`objectbox` Dart Package on `pub.dev`](https://pub.dev/packages/objectbox)
