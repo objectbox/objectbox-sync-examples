@@ -24,7 +24,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/objectbox/objectbox-go/examples/tasks/internal/model"
+	"client-go/model"
 	"github.com/objectbox/objectbox-go/objectbox"
 )
 

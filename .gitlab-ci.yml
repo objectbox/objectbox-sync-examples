@@ -18,21 +18,18 @@ build-and-test:
     
     - echo "➡️ Building client-java..."
     - cd tasks/client-java
-    - git update-index --chmod=+x gradlew
     - ./gradlew clean build
     - echo "✅ Building client-java...DONE"
     - cd ../..
 
     - echo "➡️ Building client-android-java..."
     - cd tasks/client-android-java
-    - git update-index --chmod=+x gradlew
     - ./gradlew clean build
     - echo "✅ Building client-android-java...DONE"
     - cd ../..
 
     - echo "➡️ Building client-android-kotlin..."
     - cd tasks/client-android-kotlin
-    - git update-index --chmod=+x gradlew
     - ./gradlew clean build
     - echo "✅ Building client-android-kotlin...DONE"
     - cd ../..

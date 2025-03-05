@@ -1,7 +1,19 @@
-# Example: Tasks
-This example shows how to use the ObjectBox's GO API to create a simple console-base task-list application.
+# `client-go` Sync Example: Using the Sync Client in Go
 
-To start the program just build & run the main.go, which launches an interactive console application
+This example shows how to use the ObjectBox's Go API to create a simple console-base task-list application.
+
+### Setup
+
+```bash
+cd client-go
+go mod tidy
+bash <(curl -s https://raw.githubusercontent.com/objectbox/objectbox-go/main/install.sh) --sync
+export LD_LIBRARY_PATH=lib/:$LD_LIBRARY_PATH
+go build main.go
+./main
+```
+
+On MacOS, you may replace `LD_LIBRARY_PATH` with `DYLD_LIBRARY_PATH`.
 
 ```
 Welcome to the ObjectBox tasks-list app example
