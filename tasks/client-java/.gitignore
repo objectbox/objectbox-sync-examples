@@ -1,41 +1,21 @@
+# macOS
 .DS_Store
+
+# Gradle
+.gradle
+build/
 
 # IntelliJ Idea
 .idea/
 *.iml
 
-# Gradle & Java build
-.gradle
-build/
-bin/
-gen/
-target/
-out/
-classes/
-gradle.properties
-
-# Local build properties
-build.properties
-local.properties
-
-# Native libs
-objectbox*.dll
-libobjectbox*.so
+# For ObjectBox:
+# ObjectBox platform libraries
 libobjectbox*.dylib
-
-### Test DB files
+libobjectbox*.so
+objectbox*.dll
+# ObjectBox database files
 data.mdb
 lock.mdb
-test-db/
-jni-unit-test-db/
-test-db64/
-perf-test-db/
-perf-test-db64/
-
-## Backups
-.gitignore~
-*.txt~
+# ObjectBox model backup file
 default.json.bak
-
-# Java crash reports
-hs_err_pid*.log
