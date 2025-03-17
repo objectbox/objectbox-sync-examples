@@ -1,24 +1,40 @@
 # ObjectBox Sync Examples - A Task Manager App
 
-This directory contains a simple 'task manager' app built with different ObjectBox Sync client SDKs for use with the ObjectBox Sync Server.
+This directory contains the "task manager" app example:
 
-### Use-case
+- client examples using various ObjectBox Sync client APIs, as well as
+- an example configuration and scripts to run an ObjectBox Sync server
 
-To demonstrate the capabilities of ObjectBox Sync, the examples below showcase a simple task manager app that allows users to:
+are available.
+
+With the app it is possible to:
 
 - Create a new task with a description
 - Mark a task as completed
 - List all tasks or just the completed tasks
 - Delete a task
 
-The following examples are available:
+Changes are synced to the server and all connected clients.
 
-1. [`client-java`](./client-java/): Uses the Sync Java client-side APIs to build a command-line task-manager app
+## Client examples
 
-2. [`client-android-java`](./client-android-java/): Demonstrates the usage of Sync client-side SDK for Java in an Android app
+The following client examples are available:
 
-3. [`client-android-kotlin`](./client-android-kotlin/): Demonstrates the usage of Sync client-side SDK for Kotlin in an Android app
+- [client-java](./client-java/): a JVM command-line app built with Gradle, uses the ObjectBox Java
+  SDK
 
-4. [`client-flutter`](./client-flutter/): Demonstrates the usage of Sync client-side SDK for Dart in a Flutter app
+- [client-android-java](./client-android-java/): an Android app written in Java, uses the
+  ObjectBox Java SDK
 
-5. [`client-go`](./client-go/): Demonstrates the usage of Sync client-side SDK for Go to build a command-line task-manager app
+- [client-android-kotlin](./client-android-kotlin/): an Android app written in Kotlin, uses the
+  ObjectBox Java SDK
+
+- [client-flutter](./client-flutter/): a Flutter app, uses the ObjectBox Dart SDK
+
+- [client-go](./client-go/): a Go command-line app, uses the ObjectBox Go SDK
+
+## Server examples
+
+Server configuration and setup scripts are available:
+
+- [server-docker](./server-docker/): uses the ObjectBox Sync server Docker image
