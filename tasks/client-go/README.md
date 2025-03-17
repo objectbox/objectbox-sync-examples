@@ -1,4 +1,4 @@
-# `client-go` Sync Example: Using the Sync Client in Go
+# Sync Client Example: using the Go SDK in a command line application
 
 This example shows how to use the ObjectBox's Go API to create a simple console-base task-list application.
 

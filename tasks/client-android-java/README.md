@@ -1,4 +1,4 @@
-# `client-android-java` Sync Example: Using the Sync Client in an Android/Java application
+# Sync Client Example: using the Java SDK in a Java Android application 
 
 This example shows how to use ObjectBox Sync in an Android task list app written in Java.
 

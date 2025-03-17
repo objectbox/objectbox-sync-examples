@@ -1,4 +1,4 @@
-# Sync Client Example: using the Java SDK on JVM 
+# Sync Client Example: using the Java SDK in a command line application
 
 This example shows how to use the Sync client using the Java SDK in a JVM console application.
 

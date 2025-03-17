@@ -1,4 +1,4 @@
-# `client-flutter` Sync Example: Using the Sync Client in a Flutter app
+# Sync Client Example: using the Dart SDK in a Flutter application 
 
 This project contains the Flutter version of the Sync example from the [objectbox-examples](https://github.com/objectbox/objectbox-examples) repository.
 

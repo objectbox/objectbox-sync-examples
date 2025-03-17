@@ -1,4 +1,4 @@
-# Using the Sync Server from Docker
+# Sync Server Example: using the ObjectBox Docker image
 
 The Sync Server is available as a Docker image that can be accessed by requesting a [Sync trial](https://objectbox.io/sync/). The team can either provide a,
 

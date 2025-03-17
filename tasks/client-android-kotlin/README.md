@@ -1,4 +1,4 @@
-# `client-android-kotlin` Sync Example: Using the Sync Client in an Android/Kotlin application
+# Sync Client Example: using the Java SDK in a Kotlin Android application 
 
 This example shows how to use ObjectBox Sync in an Android task list app written in Kotlin.
 
