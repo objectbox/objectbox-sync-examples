@@ -1,29 +1,30 @@
-# `client-java` Sync Example: Using the Sync Client on JVM 
+# Sync Client Example: using the Java SDK on JVM 
 
-This example shows how to use the [Sync client](https://sync.objectbox.io/sync-client) in a console-based Java application.
+This example shows how to use the Sync client using the Java SDK in a JVM console application.
 
-* See [`Task`](java-main-sync/src/main/java/io/objectbox/example/Task.java) on how to define a simple entity
-* See [`TasksSyncDB`](java-main-sync/src/main/java/io/objectbox/example/TasksSyncDB.java) to perform basic operations on [`Task`](java-main-sync/src/main/java/io/objectbox/example/Task.java) with the Sync client
+- See [`Task`](app/src/main/java/io/objectbox/example/Task.java) on how to define a simple entity
+- See [`TasksSyncDB`](app/src/main/java/io/objectbox/example/TasksSyncDB.java) on how to set up Sync and perform basic database operations with `Task`
 
-### Setup
+## Setup
 
-#### Intellij Idea
+### IntelliJ IDEA
 
-1. Open the `client-java` directory in Intellij Idea. Opening the directory in Intellij Idea should automatically start building the project with Gradle.
+1. Open the `client-java` directory. The Gradle project should sync and is then ready to build.
 
-2. On a successful Gradle build, right-click the `app/src/main/java/io/objectbox/example/Main.java` file and select the **Run 'Main.main()'** option.
+2. To build and run the application, run [`Main.java`](app/src/main/java/io/objectbox/example/Main.java).
 
-#### Other IDEs
+### Other IDEs or from the command line
 
-1. Open the `client-java` directory in an IDE of your choice. 
-2. In the directory, execute the following command to build and run the CLI application:
+1. Open the `client-java` directory.
 
-```bash
-./gradlew run
-```
+2. To build and run the application, run the following command:
 
-### Docs
+    ```shell
+    ./gradlew run
+    ```
+
+## Documentation
 
 - [Sync client](https://sync.objectbox.io/sync-client)
-- [ObjectBox Java API Guides](https://docs.objectbox.io/getting-started)
+- [ObjectBox Java API](https://docs.objectbox.io/getting-started)
 - [ObjectBox Java API Reference](https://objectbox.io/docfiles/java/current/)
