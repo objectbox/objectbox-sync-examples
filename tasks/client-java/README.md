@@ -9,13 +9,13 @@ This example shows how to use the Sync client using the Java SDK in a JVM consol
 
 ### IntelliJ IDEA
 
-1. Open the `client-java` directory. The Gradle project should sync and is then ready to build.
+1. Open this directory. The Gradle project should sync and is then ready to build.
 
 2. To build and run the application, run [`Main.java`](app/src/main/java/io/objectbox/example/Main.java).
 
 ### Other IDEs or from the command line
 
-1. Open the `client-java` directory.
+1. Open this directory.
 
 2. To build and run the application, run the following command:
 
