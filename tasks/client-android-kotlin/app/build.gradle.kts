@@ -15,6 +15,7 @@ android {
     compileSdk = 34 // Android 14 (UPSIDE_DOWN_CAKE)
 
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
 
