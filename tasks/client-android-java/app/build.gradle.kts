@@ -11,7 +11,7 @@ val objectboxVersion: String by rootProject.extra
 
 android {
     namespace = "io.objectbox.example.sync"
-    compileSdk = 34 // Android 14 (UPSIDE_DOWN_CAKE)
+    compileSdk = 35 // Android 15 (Vanilla Ice Cream)
 
     buildFeatures {
         buildConfig = true
