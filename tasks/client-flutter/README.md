@@ -1,14 +1,32 @@
 # Sync Client Example: using the Dart SDK in a Flutter application 
 
-This project contains the Flutter version of the Sync example from the [objectbox-examples](https://github.com/objectbox/objectbox-examples) repository.
+This example shows how to use ObjectBox Sync in a Flutter task list app written in Dart.
 
-You need to have a Sync Trial and run the Sync Server to run the demo --> Apply for the [Sync Trial here](https://objectbox.io/sync/).
+- See the [`ObjectBox`](lib/objectbox.dart) class on how to configure a Sync client and basic box operations.
+- See the [`Task`](lib/model.dart) class on how to define a simple entity.
 
-### Setup
+## Setup
 
-The basic steps to get this demo running (assuming you have a working Flutter setup):
+### Android Studio
 
-```
+1. Open this directory in Android Studio with the Flutter plugin installed.
+
+2. Run ObjectBox generator in this directory with the following command:
+
+    ```shell
+    dart run build_runner build
+    ```
+
+    > [!NOTE]
+    > In an actual project the generator is only run when first creating or making changes to the model. And, in addition to the model JSON file, the generated `objectbox.g.dart` file would be version controlled.
+
+3. To run the app, from the toolbar select a device and once it is started click **Run 'main.dart'**.
+
+### Other IDEs or from the command line
+
+The basic steps to get this example running (assuming you have a working Flutter setup):
+
+```shell
 # Set up project, get latest dependencies
 flutter pub upgrade
 
@@ -19,9 +37,10 @@ dart run build_runner build
 flutter run
 ```
 
-Optional: depending on your setup you might have to adjust the Sync server address in [objectbox.dart](/lib/objectbox.dart).
+> [!NOTE]
+> In an actual project the generator is only run when first creating or making changes to the model. And, in addition to the model JSON file, the generated `objectbox.g.dart` file would be version controlled.
 
-### Docs
+## Documentation
 
 - [Sync Client](https://sync.objectbox.io/sync-client)
 - [ObjectBox Flutter API](https://docs.objectbox.io/getting-started)
