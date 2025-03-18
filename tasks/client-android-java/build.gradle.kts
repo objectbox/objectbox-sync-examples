@@ -9,8 +9,8 @@ buildscript {
     val objectboxVersion by extra("4.2.0")
 
     dependencies {
-        classpath("com.android.tools.build:gradle:8.1.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
+        classpath("com.android.tools.build:gradle:8.7.3")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.10")
 
         // For ObjectBox: add the Gradle plugin (it is applied in the app build script)
         classpath("io.objectbox:objectbox-gradle-plugin:$objectboxVersion")
