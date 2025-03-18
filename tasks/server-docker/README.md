@@ -1,19 +1,23 @@
 # Sync Server Example: using the ObjectBox Docker image
 
-The Sync Server is available as a Docker image that can be accessed by requesting a [Sync trial](https://objectbox.io/sync/). The team can either provide a,
+ObjectBox Sync Server is available as a Docker image. To obtain it request a [Sync trial](https://objectbox.io/sync/). We then either provide
 
-- Docker image packaged as a **.tar.gz** that can loaded with
+- a Docker image, **packaged as a .tar.gz**, that can be loaded with:
 
-    `docker load --input ~/Downloads/sync-server.tar`
+    ```shell
+    docker load --input ~/Downloads/sync-server.tar
+    ```
 
-- Private DockerHub repository details through which the Sync Server image can be pulled 
+- a private **DockerHub repository** through which the Sync Server image can be pulled:
 
-    `docker pull objectboxio/sync-<customer>:sync-server-<version>`. 
+    ```shell
+    docker pull objectboxio/sync-<customer>:sync-server-<version>
+    ```
 
-    Make sure you are logged-in with the agreed credentials using `docker login`. 
+    > [!NOTE]
+    > Make sure you are logged in using the provided credentials using `docker login`.
 
-
-Once the Docker image is loaded/pulled, it should be visible in the output of `docker image ls`,
+Once you have added the Docker image, it should be visible in the output of `docker image ls`:
 
 ```shell
 $ docker image ls
@@ -21,9 +25,9 @@ REPOSITORY                          TAG                      IMAGE ID       CREA
 objectboxio/sync                    sync-server-2025-02-03   d2a8601dcb71   3 weeks ago    103MB
 ```
 
-## Passing the configuration in JSON
+## Using a JSON configuration file
 
-To persist the ObjectBox database files inside the Sync Server container, we create and attach a volume to a container that contains the model and configuration JSON files,
+Create a Docker volume to persist the ObjectBox Sync server configuration, model and database files:
 
 ```batch
 REM Windows Batch Script
@@ -43,7 +47,7 @@ docker run --rm \
     cp /src/objectbox-model.json /src/sync-server-config.json /data/
 ```
 
-We run the container attaching the `sync-server-data` volume and publishing the required ports,
+Then run a container using the Sync server image. Attach the created `sync-server-data` volume and publish ports `9999` for the Sync protocol and `9980` for Admin:
 
 ```batch
 REM Windows Batch Script
@@ -66,10 +70,9 @@ docker run --rm -it \
     --conf sync-server-config.json
 ```
 
-## Passing the configuration via command line options
+## Using command line options
 
-
-To persist the ObjectBox database files inside the Sync Server container, we create and attach a volume to a container that contains the model file,
+Create a Docker volume to persist the ObjectBox Sync model and database files:
 
 ```batch
 REM Windows Batch Script
@@ -89,7 +92,7 @@ docker run --rm \
     cp /src/objectbox-model.json /data/
 ```
 
-We run the container attaching the `sync-server-data` volume and publishing the required ports,
+Then run a container using the Sync server image. Attach the created `sync-server-data` volume and publish ports `9999` for the Sync protocol and `9980` for Admin:
 
 ```batch
 REM Windows Batch Script
@@ -115,3 +118,9 @@ docker run --rm -it \
     --unsecured-no-authentication \
     --admin-bind 0.0.0.0:9980
 ```
+
+## Documentation
+
+- [Get a Sync trial](https://objectbox.io/sync/)
+- [Sync Server](https://sync.objectbox.io/objectbox-sync-server)
+- [Sync Server Configuration](https://sync.objectbox.io/sync-server-configuration)
