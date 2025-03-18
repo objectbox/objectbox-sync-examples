@@ -31,15 +31,6 @@ objectboxio/sync                    sync-server-2025-02-03   d2a8601dcb71   3 we
 
 Create a Docker volume to persist the ObjectBox Sync server configuration, model and database files:
 
-```batch
-REM Windows Batch Script
-docker volume create sync-server-data
-docker run --rm ^
-        --volume %cd%:/src ^
-        --volume sync-server-data:/data busybox ^
-        cp /src/objectbox-model.json /src/sync-server-config.json /data/
-```
-
 ```bash
 # Bash
 docker volume create sync-server-data
@@ -49,18 +40,16 @@ docker run --rm \
     cp /src/objectbox-model.json /src/sync-server-config.json /data/
 ```
 
-Then run a container using the Sync server image. Attach the created `sync-server-data` volume and publish ports `9999` for the Sync protocol and `9980` for Admin:
-
 ```batch
-REM Windows Batch Script
-docker run -it ^
-    --user=0 ^
-    --mount source=sync-server-data,target=/data ^
-    --publish 127.0.0.1:9999:9999 ^
-    --publish 127.0.0.1:9980:9980 ^
-    objectboxio/sync:sync-server-2025-02-03 ^
-    --conf sync-server-config.json
+REM Windows Command Prompt
+docker volume create sync-server-data
+docker run --rm ^
+        --volume %cd%:/src ^
+        --volume sync-server-data:/data busybox ^
+        cp /src/objectbox-model.json /src/sync-server-config.json /data/
 ```
+
+Then run a container using the Sync server image. Attach the created `sync-server-data` volume and publish ports `9999` for the Sync protocol and `9980` for Admin:
 
 ```bash
 # Bash
@@ -72,18 +61,20 @@ docker run --rm -it \
     --conf sync-server-config.json
 ```
 
+```batch
+REM Windows Command Prompt
+docker run -it ^
+    --user=0 ^
+    --mount source=sync-server-data,target=/data ^
+    --publish 127.0.0.1:9999:9999 ^
+    --publish 127.0.0.1:9980:9980 ^
+    objectboxio/sync:sync-server-2025-02-03 ^
+    --conf sync-server-config.json
+```
+
 ### Using command line options
 
 Create a Docker volume to persist the ObjectBox Sync model and database files:
-
-```batch
-REM Windows Batch Script
-docker volume create sync-server-data
-docker run --rm ^
-        --volume %cd%:/src ^
-        --volume sync-server-data:/data busybox ^
-        cp /src/objectbox-model.json /data/
-```
 
 ```bash
 # Bash
@@ -94,20 +85,16 @@ docker run --rm \
     cp /src/objectbox-model.json /data/
 ```
 
-Then run a container using the Sync server image. Attach the created `sync-server-data` volume and publish ports `9999` for the Sync protocol and `9980` for Admin:
-
 ```batch
-REM Windows Batch Script
-docker run -it ^
-    --user=0 ^
-    --mount source=sync-server-data,target=/data ^
-    --publish 127.0.0.1:9999:9999 ^
-    --publish 127.0.0.1:9980:9980 ^
-    objectboxio/sync:sync-server-2025-02-03 ^
-    --model objectbox-model.json ^
-    --unsecured-no-authentication ^
-    --admin-bind 0.0.0.0:9980
+REM Windows Command Prompt
+docker volume create sync-server-data
+docker run --rm ^
+        --volume %cd%:/src ^
+        --volume sync-server-data:/data busybox ^
+        cp /src/objectbox-model.json /data/
 ```
+
+Then run a container using the Sync server image. Attach the created `sync-server-data` volume and publish ports `9999` for the Sync protocol and `9980` for Admin:
 
 ```bash
 # Bash
@@ -118,6 +105,19 @@ docker run --rm -it \
     objectboxio/sync:sync-server-2025-02-03 \
     --model objectbox-model.json \
     --unsecured-no-authentication \
+    --admin-bind 0.0.0.0:9980
+```
+
+```batch
+REM Windows Command Prompt
+docker run -it ^
+    --user=0 ^
+    --mount source=sync-server-data,target=/data ^
+    --publish 127.0.0.1:9999:9999 ^
+    --publish 127.0.0.1:9980:9980 ^
+    objectboxio/sync:sync-server-2025-02-03 ^
+    --model objectbox-model.json ^
+    --unsecured-no-authentication ^
     --admin-bind 0.0.0.0:9980
 ```
 
