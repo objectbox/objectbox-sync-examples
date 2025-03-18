@@ -25,7 +25,9 @@ REPOSITORY                          TAG                      IMAGE ID       CREA
 objectboxio/sync                    sync-server-2025-02-03   d2a8601dcb71   3 weeks ago    103MB
 ```
 
-## Using a JSON configuration file
+## Setup
+
+### Using a JSON configuration file
 
 Create a Docker volume to persist the ObjectBox Sync server configuration, model and database files:
 
@@ -70,7 +72,7 @@ docker run --rm -it \
     --conf sync-server-config.json
 ```
 
-## Using command line options
+### Using command line options
 
 Create a Docker volume to persist the ObjectBox Sync model and database files:
 
