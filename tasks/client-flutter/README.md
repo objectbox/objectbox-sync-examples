@@ -11,16 +11,7 @@ This example shows how to use ObjectBox Sync in a Flutter task list app written 
 
 1. Open this directory in Android Studio with the Flutter plugin installed.
 
-2. Run ObjectBox generator in this directory with the following command:
-
-    ```shell
-    dart run build_runner build
-    ```
-
-    > [!NOTE]
-    > In an actual project the generator is only run when first creating or making changes to the model. And, in addition to the model JSON file, the generated `objectbox.g.dart` file would be version controlled.
-
-3. To run the app, from the toolbar select a device and once it is started click **Run 'main.dart'**.
+2. To run the app, from the toolbar select a device and once it is started click **Run 'main.dart'**.
 
 ### Other IDEs or from the command line
 
@@ -28,17 +19,11 @@ The basic steps to get this example running (assuming you have a working Flutter
 
 ```shell
 # Set up project, get latest dependencies
-flutter pub upgrade
-
-# Generate model and code files for ObjectBox
-dart run build_runner build
+flutter pub get
 
 # Run the app in debug mode
 flutter run
 ```
-
-> [!NOTE]
-> In an actual project the generator is only run when first creating or making changes to the model. And, in addition to the model JSON file, the generated `objectbox.g.dart` file would be version controlled.
 
 ## Documentation
 
