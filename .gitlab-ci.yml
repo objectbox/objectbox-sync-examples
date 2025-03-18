@@ -1,6 +1,3 @@
-# Default image for Linux builds
-image: objectboxio/buildenv-android:2023-08-29
-
 variables:
   # Disable the Gradle daemon. Gradle may run in a Docker container with a shared
   # Docker volume containing GRADLE_USER_HOME. If the container is stopped after a job
@@ -20,6 +17,7 @@ stages:
 build:
   stage: build
   tags: [ docker, x64 ]
+  image: objectboxio/buildenv-android:2024-12-09
   script:
     
     - cd tasks/client-java
