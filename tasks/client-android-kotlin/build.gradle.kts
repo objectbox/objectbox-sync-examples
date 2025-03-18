@@ -1,57 +1,42 @@
 plugins {
-    // Plugin to help us find updated dependencies, not required to use ObjectBox
+    // Plugin to help find updated dependencies
     // https://github.com/ben-manes/gradle-versions-plugin/releases
     id("com.github.ben-manes.versions") version "0.51.0"
 }
 
 buildscript {
+    // For ObjectBox: define common version for tools and dependencies
     val objectboxVersion by extra("4.1.0")
 
-    // For Android projects
-    val _compileSdkVersion by extra(34) /* Android 14 (UPSIDE_DOWN_CAKE) */
-    val _targetSdkVersion by extra(33) /* Android 13 (TIRAMISU) */
-
     dependencies {
-        classpath("com.android.tools.build:gradle:8.1.1") // For Android projects
-        // Note: when updating make sure to update coroutines dependency to match.
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22") // For Kotlin projects
+        classpath("com.android.tools.build:gradle:8.1.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
+
+        // For ObjectBox: add the Gradle plugin (it is applied in the app build script)
         classpath("io.objectbox:objectbox-gradle-plugin:$objectboxVersion")
     }
 
     repositories {
-        mavenCentral() // ObjectBox artifacts are available on Maven Central.
-        google() // For Android projects
+        google()
+        // For ObjectBox: dependencies are available on Central
+        mavenCentral()
     }
 }
 
 allprojects {
     repositories {
-        mavenCentral() // ObjectBox artifacts are available on Maven Central.
-        google() // For Android projects
+        google()
+        // For ObjectBox: dependencies are available on Central
+        mavenCentral()
     }
 }
 
-// Helper task for us to quickly compress the example files into a ZIP file.
-tasks.register<Zip>("zipAll") {
-    archiveBaseName.set("objectbox-examples")
-    from(rootDir) {
-        exclude("**/.idea/**")
-        exclude("**/build/**")
-        exclude(".gradle/**")
-        exclude("**/*.iml")
-        exclude("**/*.dll")
-        exclude("**/*.so")
-        exclude("**/local.properties")
-    }
-
-    destinationDirectory.set(buildDir)
-}
-
+// Use "all" Gradle distribution to get source code and API docs
 tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
 
-// Reject preview releases for dependencyUpdates task
+// For the versions plugin, reject preview releases
 fun isNonStable(version: String): Boolean {
     val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
     val regex = "^[0-9,.v-]+(-r)?$".toRegex()
