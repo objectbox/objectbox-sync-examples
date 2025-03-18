@@ -7,6 +7,12 @@ variables:
   # Gradle daemons may get killed, preventing proper clean-up of lock files in GRADLE_USER_HOME.
   # Use low priority processes to avoid Gradle builds consuming all build machine resources.
   GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.priority=low"
+  # Maven arguments
+  # --batch-mode: recommended in CI, run in non-interactive mode (disables output color)
+  # --show-version: strongly recommended in CI, will display the JDK and Maven versions in use.
+  #      Very useful to be quickly sure the selected versions were the ones you think.
+  # --errors: Produce execution error messages, useful for plugin developers (like us).
+  MVN_ARGS: "--batch-mode --show-version --errors"
 
 stages:
   - build
@@ -16,10 +22,13 @@ build:
   tags: [ docker, x64 ]
   script:
     
-    - echo "➡️ Building client-java..."
     - cd tasks/client-java
+    - echo "➡️ Building client-java with Gradle..."
     - ./gradlew clean build
-    - echo "✅ Building client-java...DONE"
+    - echo "✅ Building client-java with Gradle...DONE"
+    - echo "➡️ Building client-java with Maven..."
+    - ./mvnw $MVN_ARGS compile
+    - echo "✅ Building client-java with Maven...DONE"
     - cd ../..
 
     - echo "➡️ Building client-android-java..."
