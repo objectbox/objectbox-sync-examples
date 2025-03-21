@@ -1,26 +1,34 @@
-# ObjectBox Sync
+# ObjectBox Sync Examples
 
 [Website][1] | [Developer documentation][2] | [Examples](#sync-examples)
 
-[ObjectBox Sync][1] offers a comprehensive, out-of-the-box solution designed to efficiently manage
-and harmonize data flows between devices, irrespective of network connectivity. By facilitating
-bi-directional, selective data synchronization, ObjectBox Sync eliminates the complexities
-associated with offline-first architectures and cross-platform data management.
+This repository contains examples demonstrating ObjectBox Sync capabilities.
 
-![ObjectBox Sync Architecture](images/sync-architecture-800x600.png)
-
+[ObjectBox Sync][1] synchronizes data between devices and servers.
+It's an "offline-first" solution, meaning your app works even when the network doesn't.
+Data is kept in sync automatically when the network is available.
 Learn more on the [Sync website][1] and [developer documentation][2].
+
+## Prerequisites
+
+To run the examples, you need to have an ObjectBox Sync Server running:
+
+* You got your free ObjectBox Sync trial? If not, [sign up here](https://objectbox.io/sync/).
+* Ensure you have the Sync Server container running according to [sync-server.md](sync-server.md)
 
 ## Sync Examples
 
-The following examples demonstrating Sync capabilities are available in this repository:
+The following examples demonstrating Sync capabilities are available in this repository (more to come):
 
-1. [Task Manager App](/tasks)
+1. [Task Manager App](/tasks): A simple task manager app that serves as a basic introduction to ObjectBox Sync.
 
 [1]: https://objectbox.io/sync/
+
 [2]: https://sync.objectbox.io/
 
 ## License
+
+The examples in this repository are licensed under the Apache License, Version 2.0.
 
 ```text
 Copyright 2025 ObjectBox Ltd. All rights reserved.
@@ -38,5 +46,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-Note that this license applies to the code in this repository only.
-See our website on details about all [licenses for ObjectBox components](https://objectbox.io/faq/#license-pricing).
+More info about other ObjectBox components are available in the [FAQ](https://objectbox.io/faq/#license-pricing).

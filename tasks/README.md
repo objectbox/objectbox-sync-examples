@@ -1,11 +1,10 @@
-# ObjectBox Sync Examples - A Task Manager App
+# ObjectBox Sync Examples: A Task Manager App
 
 This directory contains the "task manager" app example:
 
 - client examples using various ObjectBox Sync client APIs, as well as
 - an example configuration and scripts to run an ObjectBox Sync server
 
-are available.
 
 With the app it is possible to:
 
