@@ -22,15 +22,15 @@ This example shows how to use ObjectBox Sync in an Android task list app written
 
 2. To build the application, run the following command:
 
-    ```shell
-    ./gradlew assembleDebug
-    ```
+```shell
+./gradlew assembleDebug
+```
 
 3. To install the application on an emulator or device, run the following command:
 
-    ```shell
-    ./gradlew installDebug
-    ```
+```shell
+./gradlew installDebug
+```
 
 ## Documentation
 

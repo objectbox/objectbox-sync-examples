@@ -25,15 +25,15 @@ This example shows how to use the Sync client using the Java SDK in a JVM consol
 
   Using Gradle:
 
-    ```shell
-    ./gradlew run
-    ```        
+```shell
+./gradlew run
+```        
 
   Using Maven:
 
-    ```shell
-    ./mvnw compile exec:java
-    ```
+```shell
+./mvnw compile exec:java
+```
 
 ## Documentation
 
