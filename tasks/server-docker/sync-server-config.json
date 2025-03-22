@@ -1,0 +1,13 @@
+{
+    "modelFile": "/data/objectbox-model.json",
+
+    "# dbMaxSize": "Note: 1G is more than plenty for this example:",
+    "dbMaxSize": "1G",
+
+    "# bind": "Note: need to bind to 0.0.0.0 so we can publish the port in Docker:",
+    "bind": "ws://0.0.0.0:9999",
+    "adminBind": "http://0.0.0.0:9980",
+
+    "# unsecuredNoAuthentication": "Note: do not enable unsecuredNoAuthentication for production:",
+    "unsecuredNoAuthentication": true
+}
