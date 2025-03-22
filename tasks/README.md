@@ -1,39 +1,49 @@
 # ObjectBox Sync Examples: A Task Manager App
 
-This directory contains the "task manager" app example:
-
-- client examples using various ObjectBox Sync client APIs, as well as
-- an example configuration and scripts to run an ObjectBox Sync server
-
-
-With the app it is possible to:
+The Tasks example is a simple app that is a good starting point to learn about ObjectBox Sync.
+It allows you to see CRUD operations in action across multiple devices, platforms, and programming languages:
 
 - Create a new task with a description
 - Mark a task as completed
 - List all tasks or just the completed tasks
 - Delete a task
 
-Changes are synced to the server and all connected clients.
+## Project organization
 
-## Client examples
+The Tasks example is organized into subdirectories:
 
-The following client examples are available:
+- One directory with example configurations and scripts to run the ObjectBox Sync Server
+- Multiple directories for independent client examples,
+  each using ObjectBox Sync client APIs to automatically sync data with the server
 
-- [client-java](./client-java/): a JVM command-line app built with Gradle, uses the ObjectBox Java
-  SDK
+To run the example, you need the ObjectBox Sync Server and at least one client.
 
-- [client-android-java](./client-android-java/): an Android app written in Java, uses the
-  ObjectBox Java SDK
+## Sync Server
 
-- [client-android-kotlin](./client-android-kotlin/): an Android app written in Kotlin, uses the
-  ObjectBox Java SDK
+The ObjectBox Sync Server is an essential part of the example.
+Follow the instructions to start the server:
 
-- [client-flutter](./client-flutter/): a Flutter app, uses the ObjectBox Dart SDK
+- [server-docker](./server-docker/): uses the ObjectBox Sync Server Docker image
 
-- [client-go](./client-go/): a Go command-line app, uses the ObjectBox Go SDK
+## Sync Client Examples
 
-## Server examples
+The user-facing part of the Tasks app are the clients.
+Combine the Sync Server with any of the Sync Client examples:
 
-Server configuration and setup scripts are available:
+- [client-java](./client-java/): a JVM command-line app written in Java (Gradle and Maven are supported)
 
-- [server-docker](./server-docker/): uses the ObjectBox Sync server Docker image
+- [client-android-java](./client-android-java/): an Android app written in Java
+
+- [client-android-kotlin](./client-android-kotlin/): an Android app written in Kotlin
+
+- [client-flutter](./client-flutter/): a Flutter app written in Dart
+
+- [client-go](./client-go/): a Go command-line app
+
+You can run multiple clients concurrently and on any number of devices.
+
+## A few notes on the Data Model
+
+* The server and the clients use the same data model, which is a prerequisite for synchronization.
+* All clients have a "Task" entity in their specific language along with a JSON file representing the data model.
+* The server example already contains the data model (which was copied from one of the clients).
