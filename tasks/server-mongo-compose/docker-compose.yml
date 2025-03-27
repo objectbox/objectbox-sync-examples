@@ -1,0 +1,29 @@
+services:
+  mongo:
+    image: mongo:8
+    container_name: mongo
+    command: ["--replSet", "rs0", "--bind_ip_all"]
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: 'test $$(mongosh --eval "rs.initiate().ok || rs.status().ok" --quiet) -eq 1'
+      interval: 10s
+      start_period: 30s
+
+  sync-server:
+    image: objectboxio/sync:sync-server-2025-03-10
+    container_name: sync-server
+    volumes:
+      - .:/data
+    ports:
+      - "127.0.0.1:9999:9999"
+      - "127.0.0.1:9980:9980"
+    command: >
+      --model /data/objectbox-model.json
+      --unsecured-no-authentication 
+      --admin-bind 0.0.0.0:9980 
+      --mongo-url mongodb://mongo:27017 
+      --mongo-db test-db
+    depends_on:
+      mongo:
+        condition: service_healthy

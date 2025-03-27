@@ -24,6 +24,7 @@ The ObjectBox Sync Server is an essential part of the example.
 Follow the instructions to start the server:
 
 - [server-docker](./server-docker/): uses the ObjectBox Sync Server Docker image
+- [server-mongo-compose](./server-mongo-compose/): uses the ObjectBox Sync server and a connected MongoDB instance with Docker Compose
 
 ## Sync Client Examples
 
