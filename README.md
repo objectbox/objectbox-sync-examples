@@ -11,10 +11,7 @@ Learn more on the [Sync website][1] and [developer documentation][2].
 
 ## Prerequisites
 
-To run the examples, you need to have an ObjectBox Sync Server running:
-
-* You got your free ObjectBox Sync trial? If not, [sign up here](https://objectbox.io/sync/).
-* Ensure you have the Sync Server container running according to [sync-server.md](sync-server.md)
+To run the examples, you need to have an ObjectBox Sync Server running according to [sync-server.md](sync-server.md).
 
 ## Sync Examples
 
