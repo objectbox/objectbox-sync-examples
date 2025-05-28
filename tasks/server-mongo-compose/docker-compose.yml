@@ -8,16 +8,18 @@ services:
     ports:
       - "27017:27017"
     command: ["--replSet", "rs0", "--bind_ip_all"]
-    healthcheck:
-      # Check if the replica set is initialized and ready
-      test: mongosh --quiet --eval 'try { rs.status().ok === 1 } catch(err) { false }' | grep -q "true"
-      interval: 5s
-      timeout: 5s
-      retries: 10
-      start_period: 5s
     volumes:
       - mongo-data:/data/db
       - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
+
+  # Instead of healthcheck "spamming" the log, have a "waiter" container here.
+  # It's sole purpose is to sleep a few seconds to give MongoDB time to boot up before starting the Sync Server.
+  mongo-waiter:
+    image: objectboxio/sync-server-trial # Use the same image as we already have it
+    container_name: mongo-waiter
+    entrypoint: ["/bin/sleep", "5"] # Wait for 5 seconds; adjust as needed
+    depends_on:
+      - mongo
 
   sync-server:
     image: objectboxio/sync-server-trial
@@ -34,8 +36,8 @@ services:
       --mongo-url mongodb://localhost:27017/?replicaSet=rs0
       --mongo-db test-db
     depends_on:
-      mongo:
-        condition: service_healthy
+      mongo-waiter:
+        condition: service_completed_successfully
 
 volumes:
   mongo-data:
