@@ -6,7 +6,7 @@ plugins {
 
 buildscript {
     // For ObjectBox: define common version for tools and dependencies
-    val objectboxVersion by extra("4.2.0")
+    val objectboxVersion by extra("4.3.0")
 
     dependencies {
         classpath("com.android.tools.build:gradle:8.7.3")
