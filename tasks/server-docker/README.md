@@ -3,20 +3,16 @@
 Starting the ObjectBox Sync Server involves only running a single script.
 Additionally, we will show how to verify the setup and how to access the Admin interface.
 
-## Prerequisites
-
-To start the ObjectBox Sync Server, you need its Docker image.
-Basic setup instructions are available on the page [sync-server.md](../../sync-server.md)
-at the top directory level of this sync examples project.
-
 ## Start the Sync Server
+
+The only prerequisite is that you have Docker installed on your machine. Check [sync-server.md](../../sync-server.md) for details.
 
 You can start the Sync Server using the provided start scripts in this directory.
 
 On **Linux/macOS:**, run `./start.sh` (see [start.sh](start.sh)), and on Windows, run `start.bat` (see [start.bat](start.bat)).
 
 Note: by default, the scripts use the "latest" tag of the Docker image.
-The scripts also allow specifying the tag to use a specific version, e.g. `./start.sh 2025-05-27`.
+The scripts also allow specifying the tag to use a specific version, e.g. `./start.sh 2025-06-02`.
 
 When the Sync Server starts, it writes its logs to the console.
 You know that the Sync Server is up and running if you the final line looks like this:

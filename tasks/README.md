@@ -1,7 +1,7 @@
 # ObjectBox Sync Examples: A Task Manager App
 
 The Tasks example is a simple app that is a good starting point to learn about ObjectBox Sync.
-It allows you to see CRUD operations in action across multiple devices, platforms, and programming languages:
+It allows you to see CRUD operations (create, read, update, delete) in action across multiple devices, platforms, and programming languages:
 
 - Create a new task with a description
 - Mark a task as completed
@@ -12,11 +12,11 @@ It allows you to see CRUD operations in action across multiple devices, platform
 
 The Tasks example is organized into subdirectories:
 
-- One directory with example configurations and scripts to run the ObjectBox Sync Server
+- Two directories with example configurations and scripts to run the ObjectBox Sync Server
 - Multiple directories for independent client examples,
   each using ObjectBox Sync client APIs to automatically sync data with the server
 
-To run the example, you need the ObjectBox Sync Server and at least one client.
+To run the example, you need one of the ObjectBox Sync Servers and at least one client.
 
 ## Sync Server
 

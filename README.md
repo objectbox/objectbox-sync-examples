@@ -11,7 +11,10 @@ Learn more on the [Sync website][1] and [developer documentation][2].
 
 ## Prerequisites
 
-To run the examples, you need to have an ObjectBox Sync Server running according to [sync-server.md](sync-server.md).
+To run the examples, you need to have:
+
+* Docker to run the ObjectBox Sync Server (see [sync-server.md](sync-server.md) for details).
+* At least one of the client development platforms (e.g. Android SDK, Flutter SDK, Go SDK, xCode for Swift, etc.). 
 
 ## Sync Examples
 

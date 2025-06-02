@@ -2,7 +2,8 @@
 
 ObjectBox Sync Server is distributed as a Docker image and we assume you Docker is installed on your machine.
 Depending on your personal preferences, you can use [Docker Engine](https://docs.docker.com/engine/install/) for the command-line interface (CLI). [Docker Desktop](https://docs.docker.com/desktop/) additionally comes with graphical UI.
-In this guide, we stick to the plain Docker CLI, which works with both types.
+
+Note: `docker run` pulls images automatically; `docker pull` is not required unless you want to check for the latest version of the image if you already have an existing version locally. 
 
 First, let's pull the trial from [Docker Hub](https://hub.docker.com/r/objectboxio/sync-server-trial):
 
