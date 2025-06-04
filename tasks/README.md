@@ -41,6 +41,8 @@ Combine the Sync Server with any of the Sync Client examples:
 
 - [client-go](./client-go/): a Go command-line app
 
+- [client-swift](./client-swift/): an iOS and macOS app written in Swift
+
 You can run multiple clients concurrently and on any number of devices.
 
 ## A few notes on the Data Model
