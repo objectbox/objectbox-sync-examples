@@ -26,15 +26,18 @@ services:
     container_name: sync-server
     restart: always
     user: "${UID:-1000}:${GID:-1000}"
-    network_mode: "host"  # Docker network name resolution caused connection issues
+    ports:
+      - "9980:9980"
+      - "9999:9999"
     volumes:
       - .:/data
     command: >
       --model /data/objectbox-model.json
       --unsecured-no-authentication 
       --admin-bind 0.0.0.0:9980 
-      --mongo-url mongodb://localhost:27017/?replicaSet=rs0
+      --mongo-url mongodb://mongo:27017/?replicaSet=rs0
       --mongo-db test-db
+    #  --debug
     depends_on:
       mongo-waiter:
         condition: service_completed_successfully

@@ -12,10 +12,10 @@ ATTEMPT=1
 while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
   echo "Attempt $ATTEMPT of $MAX_ATTEMPTS to connect to MongoDB..."
   
-  if mongosh --host localhost:27017 --quiet --eval "db.runCommand('ping').ok" &>/dev/null; then
+  if mongosh --host mongo:27017 --quiet --eval "db.runCommand('ping').ok" &>/dev/null; then
     echo "MongoDB is responsive, initializing replica set..."
     
-    mongosh --host localhost:27017 <<EOF
+    mongosh --host mongo:27017 <<EOF
   try {
     const status = rs.status();
     if (status.ok !== 1) {
@@ -27,7 +27,7 @@ while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
     rs.initiate({
       _id: "rs0",
       members: [
-        { _id: 0, host: "localhost:27017" }
+        { _id: 0, host: "mongo:27017" }
       ]
     });
     print("Replica set initialization requested");
