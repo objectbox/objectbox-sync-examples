@@ -16,6 +16,16 @@ The following services are available once the containers start running:
   - Ensure that no local instance is running on this port 
   - Use `mongodb://localhost:27017/?directConnection=true` as a connection string if you want connect from the host.
 
+### User ID troubleshooting
+
+The Sync Server is run using the current user account to make the database easily accessible to the host.
+This is configured in the [docker-compose.yml](docker-compose.yml) for the "sync-server" service using 
+`user: "${UID:-1000}:${GID:-1000}"`. However, this does not always work.
+
+--> If your user/group ID is not 1000, please adjust them directly in that file.
+Alternatively, you could also comment out the line,
+in which case the Sync Server will run as root and create the database directory "objectbox" with root permission.
+
 ## Running the MongoDB server
 
 This example comes with its own MongoDB server, so you don't need to install MongoDB locally.
@@ -42,6 +52,16 @@ Error response from daemon: failed to set up container networking: driver failed
 
 Note: If you actually want to use your local MongoDB server, you may prefer the "plain" Docker example without "Compose".
 This example is available in the [../server-docker](../server-docker/README.md) directory.
+
+## ObjectBox Database
+
+The ObjectBox database is created inside the "objectbox" subdirectory of this directory.
+This is done by the Docker volume mapping `.:/data`,
+which mounts the current directory (.) from the host into the container at /data,
+allowing the container to access files from your project directory.
+
+To **delete the database** to start fresh, simply delete the "objectbox" directory when the services are down,
+e.g. after `docker compose down`.
 
 ## Documentation
 
