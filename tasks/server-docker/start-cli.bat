@@ -7,7 +7,7 @@ goto continue
 
 :noversion
 echo Version not given (first parameter to this script). Using default version.
-set sync_server_version=2025-03-10
+set sync_server_version=latest
 
 :continue
 echo Starting ObjectBox Sync Server version %sync_server_version%
