@@ -1,14 +1,25 @@
 # Sync Server and MongoDB with Docker Compose
 
 The Sync Server can be connected to a MongoDB instance to perform bidirectional data-sync.
-This example shows how to run the Sync Server and a MongoDB instance with Docker Compose:
+This example shows how to run the Sync Server and a MongoDB instance with Docker Compose.
+
+## Starting the services
+
+This command initiates the services/containers as described in the [docker-compose.yml](docker-compose.yml) script:
 
 ```bash
-docker compose up
+docker compose up # pass -d for detached mode
+```
+If necessary, images are first pulled, and then the output should look something like this (followed by the output of the services):
+
+```
+✔ Network server-mongo-compose_default         Created
+✔ Container mongo                              Created
+✔ Container server-mongo-compose-mongo-init-1  Created
+✔ Container sync-server                        Created
 ```
 
-This command initiates the containers/network as described in the `docker-compose.yml` script.
-The following services are available once the containers start running:
+If everything went fine, the following services/ports are available:
 
 - ObjectBox Admin at port `9980`: open http://localhost:9980/ to access the Admin (and activate the trial)
 - Sync server at port `9999`: this is the target for Sync clients
@@ -18,13 +29,28 @@ The following services are available once the containers start running:
 
 ### User ID troubleshooting
 
+Something is not working due to user/permission errors? Read on, otherwise skip this section.
+
 The Sync Server is run using the current user account to make the database easily accessible to the host.
 This is configured in the [docker-compose.yml](docker-compose.yml) for the "sync-server" service using 
-`user: "${UID:-1000}:${GID:-1000}"`. However, this does not always work.
+`user: "${UID:-1000}:${GID:-1000}"`. However, this may not work on all machines and setups.
 
 --> If your user/group ID is not 1000, please adjust them directly in that file.
 Alternatively, you could also comment out the line,
 in which case the Sync Server will run as root and create the database directory "objectbox" with root permission.
+
+### Activating debug logs
+
+Debug logs can help identify issues on the Sync Server.
+While you can enable them using the Admin UI (on the "Status" page),
+it's often preferable to do so via configuration so all debug logs,
+including the ones during starting up Sync Server.
+
+In the [docker-compose.yml](docker-compose.yml) in the "sync-server" service's `command` section you can find a line like this: `#  --debug`.
+The is the commented out debug flag for the Sync Service:
+to enable it, simply delete the `#` character at the beginning of the line.
+To actually apply this, restart the Sync Server container via `docker compose up -d --force-recreate sync-server`.
+Then, you should already see debug logs (`[DEBUG]`) with `docker compose logs sync-server` from the restarted container. 
 
 ## Running the MongoDB server
 
@@ -62,6 +88,16 @@ allowing the container to access files from your project directory.
 
 To **delete the database** to start fresh, simply delete the "objectbox" directory when the services are down,
 e.g. after `docker compose down`.
+
+## Starting over
+
+You want to start with "fresh" databases (MongoDB and ObjectBox)? Something is not working and you want to start over? Run these commands:
+
+```bash
+docker compose down --volumes  # All Mongo data gets deleted!
+rm -rf objectbox  # Delete the objectbox database directory
+docker compose up # Start the services again, all new data 
+```
 
 ## Documentation
 
