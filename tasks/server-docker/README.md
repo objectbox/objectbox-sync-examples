@@ -75,3 +75,17 @@ Once the Sync Server is up and running, you can verify that its Sync port (9999)
 Enter http://127.0.0.1:9999/ in a browser and the result should look like this:
 
 <img src="images/sync-server-verify-sync-port.png" alt="ObjectBox Sync Server is running" width="350">
+
+## Adding MongoDB Sync
+
+If you already have the MongoDB connection string, you can add it to the `sync-server-config.json` file like this
+(replace the url and database values with your own):
+
+```json
+    "mongoDb": {
+        "url": "mongodb://localhost:27017",
+        "database": "MyDatabase"
+    }
+```
+Then you need to manually trigger one full sync with MongoDB via the Admin UI.
+While this may already get you started, we highly recommend checking the [MongoDB connector docs](https://sync.objectbox.io/mongodb-sync-connector) for a full picture.
