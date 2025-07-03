@@ -76,6 +76,15 @@ Enter http://127.0.0.1:9999/ in a browser and the result should look like this:
 
 <img src="images/sync-server-verify-sync-port.png" alt="ObjectBox Sync Server is running" width="350">
 
+## ObjectBox Database
+
+The ObjectBox database is created inside the "objectbox" subdirectory of this directory.
+This is done by a Docker volume mapping in the scripts, 
+which mounts the current directory from the host into the container at /data,
+allowing the container to access files from your project directory.
+
+To **delete the database** to start fresh, simply delete the "objectbox" subdirectory when the Docker container is down.
+
 ## Adding MongoDB Sync
 
 If you already have the MongoDB connection string, you can add it to the `sync-server-config.json` file like this
