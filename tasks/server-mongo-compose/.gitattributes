@@ -1,0 +1,2 @@
+# Keep LF line endings for mongo init script to run it inside mongo image
+mongo-init.sh text eol=lf
