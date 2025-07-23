@@ -1,4 +1,9 @@
-Pods
+# macOS specific files
+.DS_Store
+
+# Xcode user-specific files
+xcuserdata/
+
+# ObjectBox model JSON backup files
 model-client-swift-ios.json.bak
 model-client-swift-macos.json.bak
-.DS_Store
