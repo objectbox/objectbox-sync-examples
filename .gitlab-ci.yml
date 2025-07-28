@@ -14,9 +14,9 @@ variables:
 stages:
   - build
 
-build:
+java-sdk-examples:
   stage: build
-  tags: [ docker, x64 ]
+  tags: [ docker, linux, x64 ]
   image: objectboxio/buildenv-android:2024-12-09
   script:
     
@@ -45,3 +45,12 @@ build:
     when: always
     paths:
       - "**/build/reports/lint-results-debug.html"
+
+swift-sdk-examples:
+  stage: build
+  tags: [mac, x64, xcode]
+  script:
+    - cd tasks/client-swift
+    # A simulator named "iPhone 11" is configured on the build machine
+    - xcodebuild clean build -scheme client-swift-ios -destination 'platform=iOS Simulator,name=iPhone 11'
+    - xcodebuild build -scheme client-swift-macos -destination 'platform=macOS'
