@@ -31,13 +31,13 @@ java-sdk-examples:
 
     - echo "➡️ Building client-android-java..."
     - cd tasks/client-android-java
-    - ./gradlew clean build
+    - ./gradlew clean assembleDebug # Only assemble debug variant
     - echo "✅ Building client-android-java...DONE"
     - cd ../..
 
     - echo "➡️ Building client-android-kotlin..."
     - cd tasks/client-android-kotlin
-    - ./gradlew clean build
+    - ./gradlew clean assembleDebug # Only assemble debug variant
     - echo "✅ Building client-android-kotlin...DONE"
     - cd ../..
 
