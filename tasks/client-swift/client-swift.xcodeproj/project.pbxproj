@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15E594782DEDB4C6003C7EC1 /* Pods_client_swift_macos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9C0ECA17249FF65064D8CA2 /* Pods_client_swift_macos.framework */; };
+		153A1E4F2E3074520032373A /* ObjectBox-Sync.xcframework in Frameworks */ = {isa = PBXBuildFile; productRef = 153A1E4E2E3074520032373A /* ObjectBox-Sync.xcframework */; };
+		153A1E522E30745A0032373A /* ObjectBox-Sync.xcframework in Frameworks */ = {isa = PBXBuildFile; productRef = 153A1E512E30745A0032373A /* ObjectBox-Sync.xcframework */; };
 		15E594A52DEDB56C003C7EC1 /* Task+Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E5949B2DEDB56C003C7EC1 /* Task+Sample.swift */; };
 		15E594A62DEDB56C003C7EC1 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E5949D2DEDB56C003C7EC1 /* CreateTaskView.swift */; };
 		15E594A82DEDB56C003C7EC1 /* TasksListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E5949F2DEDB56C003C7EC1 /* TasksListItem.swift */; };
@@ -20,7 +21,6 @@
 		15E594B02DEDB56C003C7EC1 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E594A02DEDB56C003C7EC1 /* TasksView.swift */; };
 		15E594B12DEDB56C003C7EC1 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E594A22DEDB56C003C7EC1 /* Task.swift */; };
 		15E594B22DEDB56C003C7EC1 /* TaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E594A32DEDB56C003C7EC1 /* TaskStore.swift */; };
-		18B23240B69F23A18885D512 /* Pods_client_swift_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80AB7948D1615368DBADBB9C /* Pods_client_swift_ios.framework */; };
 		8BC60CF53C5C5F6C40DD942F /* EntityInfo-client-swift-ios.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62063D212B69FF3AE7F7CE6B /* EntityInfo-client-swift-ios.generated.swift */; };
 		D24AA77BA65D121B9AB7F211 /* EntityInfo-client-swift-macos.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF77B5F67562BDE86E2B4B2 /* EntityInfo-client-swift-macos.generated.swift */; };
 /* End PBXBuildFile section */
@@ -34,14 +34,8 @@
 		15E594A02DEDB56C003C7EC1 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		15E594A22DEDB56C003C7EC1 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		15E594A32DEDB56C003C7EC1 /* TaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStore.swift; sourceTree = "<group>"; };
-		27DF82CC5D6FBCBD4F610D9A /* Pods-client-swift-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-swift-ios.release.xcconfig"; path = "Target Support Files/Pods-client-swift-ios/Pods-client-swift-ios.release.xcconfig"; sourceTree = "<group>"; };
 		62063D212B69FF3AE7F7CE6B /* EntityInfo-client-swift-ios.generated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "EntityInfo-client-swift-ios.generated.swift"; sourceTree = "<group>"; };
-		698FAD9ACC6A04605EB49F76 /* Pods-client-swift-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-swift-ios.debug.xcconfig"; path = "Target Support Files/Pods-client-swift-ios/Pods-client-swift-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		80AB7948D1615368DBADBB9C /* Pods_client_swift_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_client_swift_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF77B5F67562BDE86E2B4B2 /* EntityInfo-client-swift-macos.generated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "EntityInfo-client-swift-macos.generated.swift"; sourceTree = "<group>"; };
-		9169EC026ED041BF31DDBA16 /* Pods-client-swift-macos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-swift-macos.debug.xcconfig"; path = "Target Support Files/Pods-client-swift-macos/Pods-client-swift-macos.debug.xcconfig"; sourceTree = "<group>"; };
-		CBC405350CAB3E8FEE3884B4 /* Pods-client-swift-macos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-swift-macos.release.xcconfig"; path = "Target Support Files/Pods-client-swift-macos/Pods-client-swift-macos.release.xcconfig"; sourceTree = "<group>"; };
-		D9C0ECA17249FF65064D8CA2 /* Pods_client_swift_macos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_client_swift_macos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -62,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15E594782DEDB4C6003C7EC1 /* Pods_client_swift_macos.framework in Frameworks */,
+				153A1E4F2E3074520032373A /* ObjectBox-Sync.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,13 +64,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B23240B69F23A18885D512 /* Pods_client_swift_ios.framework in Frameworks */,
+				153A1E522E30745A0032373A /* ObjectBox-Sync.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		153A1E502E30745A0032373A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		15E593B42DEDB194003C7EC1 = {
 			isa = PBXGroup;
 			children = (
@@ -84,9 +85,8 @@
 				15E593C12DEDB1A5003C7EC1 /* client-swift-macos */,
 				15E593D12DEDB1B8003C7EC1 /* client-swift-ios */,
 				15E593C02DEDB1A5003C7EC1 /* Products */,
-				28A54621463879AF969225A6 /* Pods */,
-				CFD5BDB00293241A8BC49313 /* Frameworks */,
 				989CE45291CA63E3454C07CE /* generated */,
+				153A1E502E30745A0032373A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,17 +128,6 @@
 			path = shared;
 			sourceTree = "<group>";
 		};
-		28A54621463879AF969225A6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				698FAD9ACC6A04605EB49F76 /* Pods-client-swift-ios.debug.xcconfig */,
-				27DF82CC5D6FBCBD4F610D9A /* Pods-client-swift-ios.release.xcconfig */,
-				9169EC026ED041BF31DDBA16 /* Pods-client-swift-macos.debug.xcconfig */,
-				CBC405350CAB3E8FEE3884B4 /* Pods-client-swift-macos.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		989CE45291CA63E3454C07CE /* generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,15 +137,6 @@
 			path = generated;
 			sourceTree = "<group>";
 		};
-		CFD5BDB00293241A8BC49313 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				80AB7948D1615368DBADBB9C /* Pods_client_swift_ios.framework */,
-				D9C0ECA17249FF65064D8CA2 /* Pods_client_swift_macos.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,12 +144,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15E593C92DEDB1A6003C7EC1 /* Build configuration list for PBXNativeTarget "client-swift-macos" */;
 			buildPhases = (
-				D780B404FBBE41D600636CB3 /* [CP] Check Pods Manifest.lock */,
-				CCEAB78714723C24C03E8B7D /* [OBX] Update Sourcery Generated Files */,
 				15E593BB2DEDB1A5003C7EC1 /* Sources */,
 				15E593BC2DEDB1A5003C7EC1 /* Frameworks */,
 				15E593BD2DEDB1A5003C7EC1 /* Resources */,
-				DB22D9FEE733A4395F925CF2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,12 +164,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15E593D82DEDB1B9003C7EC1 /* Build configuration list for PBXNativeTarget "client-swift-ios" */;
 			buildPhases = (
-				91D76EE1E7423E28F814A7DB /* [CP] Check Pods Manifest.lock */,
-				8F8CF88F529B6814AFF243FC /* [OBX] Update Sourcery Generated Files */,
 				15E593CC2DEDB1B8003C7EC1 /* Sources */,
 				15E593CD2DEDB1B8003C7EC1 /* Frameworks */,
 				15E593CE2DEDB1B8003C7EC1 /* Resources */,
-				38CFE96F1915D547101FFDE7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,6 +207,9 @@
 			);
 			mainGroup = 15E593B42DEDB194003C7EC1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				153A1E4D2E3074520032373A /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 15E593C02DEDB1A5003C7EC1 /* Products */;
 			projectDirPath = "";
@@ -260,125 +237,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		38CFE96F1915D547101FFDE7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-client-swift-ios/Pods-client-swift-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-client-swift-ios/Pods-client-swift-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-client-swift-ios/Pods-client-swift-ios-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F8CF88F529B6814AFF243FC /* [OBX] Update Sourcery Generated Files */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[OBX] Update Sourcery Generated Files";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/ObjectBox/generate_sources.sh\" -- --output \"$PROJECT_DIR/generated/EntityInfo-client-swift-ios.generated.swift\" --model-json \"$PROJECT_DIR/model-client-swift-ios.json\"\n";
-		};
-		91D76EE1E7423E28F814A7DB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-client-swift-ios-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CCEAB78714723C24C03E8B7D /* [OBX] Update Sourcery Generated Files */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[OBX] Update Sourcery Generated Files";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/ObjectBox/generate_sources.sh\" -- --output \"$PROJECT_DIR/generated/EntityInfo-client-swift-macos.generated.swift\" --model-json \"$PROJECT_DIR/model-client-swift-macos.json\"\n";
-		};
-		D780B404FBBE41D600636CB3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-client-swift-macos-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB22D9FEE733A4395F925CF2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-client-swift-macos/Pods-client-swift-macos-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-client-swift-macos/Pods-client-swift-macos-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-client-swift-macos/Pods-client-swift-macos-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		15E593BB2DEDB1A5003C7EC1 /* Sources */ = {
@@ -426,7 +284,6 @@
 		};
 		15E593CA2DEDB1A6003C7EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9169EC026ED041BF31DDBA16 /* Pods-client-swift-macos.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -509,7 +366,6 @@
 		};
 		15E593CB2DEDB1A6003C7EC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBC405350CAB3E8FEE3884B4 /* Pods-client-swift-macos.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -584,7 +440,6 @@
 		};
 		15E593D92DEDB1B9003C7EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 698FAD9ACC6A04605EB49F76 /* Pods-client-swift-ios.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -622,6 +477,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -673,7 +529,6 @@
 		};
 		15E593DA2DEDB1B9003C7EC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27DF82CC5D6FBCBD4F610D9A /* Pods-client-swift-ios.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -711,6 +566,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -784,6 +640,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		153A1E4D2E3074520032373A /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/objectbox/objectbox-swift-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		153A1E4E2E3074520032373A /* ObjectBox-Sync.xcframework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 153A1E4D2E3074520032373A /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */;
+			productName = "ObjectBox-Sync.xcframework";
+		};
+		153A1E512E30745A0032373A /* ObjectBox-Sync.xcframework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 153A1E4D2E3074520032373A /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */;
+			productName = "ObjectBox-Sync.xcframework";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15E593B52DEDB194003C7EC1 /* Project object */;
 }
