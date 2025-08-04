@@ -1,6 +1,11 @@
-download
-lib
 *.exe
 *.out
 *.o
 *.
+
+# executable
+main
+
+# ObjectBox database library
+download
+lib
