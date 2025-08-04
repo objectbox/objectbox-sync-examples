@@ -9,20 +9,20 @@ This example shows how to use the ObjectBox's Go API to create a simple console-
 cd client-go
 
 # Download dependencies
-go mod tidy
+go mod download
 
-# Download the ObjectBox C library
+# Download the ObjectBox C library (answer 'n' when asked to install to '/usr/lib')
 bash <(curl -s https://raw.githubusercontent.com/objectbox/objectbox-go/main/install.sh) --sync
 
+# Copy the lib folder to the working directory
+cp -r objectboxlib/lib/ .
+
 # Build the example
-export LD_LIBRARY_PATH=lib/:$LD_LIBRARY_PATH
-go build main.go
+CGO_LDFLAGS="-L$(pwd)/lib" go build main.go
 
 # Run the example
 ./main
 ```
-
-On MacOS, you may have to replace `LD_LIBRARY_PATH` with `DYLD_LIBRARY_PATH`.
 
 ## Usage
 
