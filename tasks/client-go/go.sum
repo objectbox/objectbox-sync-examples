@@ -1,11 +1,9 @@
 github.com/google/flatbuffers v23.5.26+incompatible/go.mod h1:1AeVuKshWv4vARoZatz6mlQ0JxURH0Kv5+zNeJKJCa8=
 github.com/google/flatbuffers v25.2.10+incompatible h1:F3vclr7C3HpB1k9mxCGRMXq6FdUalZ6H/pNX4FP1v0Q=
 github.com/google/flatbuffers v25.2.10+incompatible/go.mod h1:1AeVuKshWv4vARoZatz6mlQ0JxURH0Kv5+zNeJKJCa8=
-github.com/objectbox/objectbox-generator v0.14.0 h1:+fr7vOFsdz7d/HWZN3ZLjLnGJ8TviliRyeBHlkL/J40=
-github.com/objectbox/objectbox-generator v0.14.0/go.mod h1:yMFFd/okhMBw02p6ZJJAmfblqyoQHjfYJie95DQbGn0=
 github.com/objectbox/objectbox-generator/v4 v4.0.0 h1:7V7t7mkGfZ0fSNhaOuOQWKNfPnq8Q7mC+Uzo9ciq5To=
 github.com/objectbox/objectbox-generator/v4 v4.0.0/go.mod h1:paUROSAShse/S8vIhpCyg6leDlZR/C7zOusTeK5YOEY=
-github.com/objectbox/objectbox-go v1.8.1 h1:Dl9cXJe4sZKz2XaOFUHTftgicatiBpUex+KLbDTS1rU=
-github.com/objectbox/objectbox-go v1.8.1/go.mod h1:FvnhelfA+S8zdGo916Z/WpPhM8AoMGP8vbXnIAj1jGo=
 github.com/objectbox/objectbox-go v1.8.2-0.20250311142432-7e2bab94ac2a h1:jG7Ft9hotXH/FdS9s29q0AhAG7z43a9EHarur75ZU0M=
 github.com/objectbox/objectbox-go v1.8.2-0.20250311142432-7e2bab94ac2a/go.mod h1:hvJc0nI2o3x2uTrWZYlrZ/t8xsQIhNUrEiou732FmJg=
+github.com/objectbox/objectbox-go v1.9.0 h1:ubyUlgx+9Y1hkf+q0cmBN01VZFhpqOEwWE5xgrIvCpM=
+github.com/objectbox/objectbox-go v1.9.0/go.mod h1:hvJc0nI2o3x2uTrWZYlrZ/t8xsQIhNUrEiou732FmJg=
