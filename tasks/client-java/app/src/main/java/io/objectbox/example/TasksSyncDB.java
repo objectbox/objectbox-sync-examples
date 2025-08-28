@@ -36,7 +36,7 @@ public class TasksSyncDB {
 
     private final BoxStore tasksBoxStore;
     private final Box<Task> tasksBox;
-    private final String syncServerURL = "ws://127.0.0.1";
+    private final String syncServerURL = "ws://localhost:9999";
     private final Logger logger = Logger.getLogger(TasksSyncDB.class.getName());
     private final SyncClient syncClient;
 

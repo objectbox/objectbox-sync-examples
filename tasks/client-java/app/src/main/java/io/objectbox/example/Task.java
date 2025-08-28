@@ -19,7 +19,10 @@ package io.objectbox.example;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Sync;
-
+import java.math.BigDecimal;
+import io.objectbox.annotation.ExternalType;
+import io.objectbox.annotation.ExternalPropertyType;
+import java.util.Arrays;
 import java.util.Date;
 
 @Sync
@@ -31,14 +34,36 @@ public class Task {
     private String text;
     private Date dateCreated;
     private Date dateFinished;
+    
+ // External mappings
 
-    public Task() {
+    @ExternalType(ExternalPropertyType.FLEX_VECTOR)
+    private Object flexList;
+
+    @ExternalType(ExternalPropertyType.MONGO_REGEX)
+    private String[] regex;
+
+    @ExternalType(ExternalPropertyType.DECIMAL_128)
+    private String decimalString;
+
+BigDecimal getBigDecimal() {
+    return new BigDecimal(decimalString);
+}
+ // ✅ Required by ObjectBox
+    public Task() { }       // keep it public (or at least non-private)
+
+    // Optional convenience constructors are fine to keep:
+    public Task(String text) {
+        this(text, null, null, null);
     }
 
-    public Task(String text) {
+    public Task(String text, Object flexList, String[] regex, String decimalString) {
         this.text = text;
         this.dateCreated = new Date();
         this.dateFinished = new Date(0);
+        this.flexList = flexList;
+        this.regex = regex;
+        this.decimalString = decimalString;
     }
 
     public long getId() {
@@ -73,6 +98,17 @@ public class Task {
         this.dateCreated = dateCreated;
     }
 
+
+
+    public Object getFlexList() { return flexList; }
+    public void setFlexList(Object flexList) { this.flexList = flexList; }
+
+    public String[] getRegex() { return regex; }
+    public void setRegex(String[] regex) { this.regex = regex; }
+
+    public String getDecimalString() { return decimalString; }
+    public void setDecimalString(String decimalString) { this.decimalString = decimalString; }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -80,6 +116,9 @@ public class Task {
                 ", text='" + text + '\'' +
                 ", createdDate=" + dateCreated +
                 ", finishedDate=" + dateFinished +
+                ", flexList=" + flexList +
+                ", regex=" + Arrays.toString(regex) +
+                ", decimalString='" + decimalString + '\'' +
                 '}';
     }
 }

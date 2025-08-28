@@ -1,26 +1,7 @@
 services:
-  mongo:
-    image: mongo:8
-    container_name: mongo
-    restart: always
-    ports:
-      - "27017:27017"
-    command: ["--replSet", "rs0", "--bind_ip_all"]
-    volumes:
-      - mongo-data:/data/db # Keep data across restarts; volume worked better than directory due to permission issues
-
-  mongo-init: # Run init script to initialize replica set
-    image: mongo:8
-    depends_on:
-      mongo:
-        condition: service_started
-    entrypoint: ["bash","/mongo-init.sh"]
-    volumes:
-      - ./mongo-init.sh:/mongo-init.sh:ro
-    restart: 'no'
-
   sync-server:
-    image: objectboxio/sync-server-trial
+    image: objectboxio/sync-server-trial:latest
+    platform: linux/amd64
     container_name: sync-server
     restart: always
     # Note: user and group ID 1000 may have to be adjusted to match your user IDs:
@@ -32,15 +13,13 @@ services:
       # Expose "current" (this) directory as "/data" in the container.
       - .:/data
     command: >
-      --model /data/objectbox-model.json
-      --unsecured-no-authentication 
+      --model ./objectbox-model.json
+      --unsecured-no-authentication       
       --admin-bind 0.0.0.0:9980 
-      --mongo-url mongodb://mongo:27017/?replicaSet=rs0
-      --mongo-db test-db
-    #  --debug
-    depends_on:
-      mongo-init:
-        condition: service_completed_successfully
+      --mongo-url mongodb+srv://ably_masha:ably@solutionsassurance.n0kts.mongodb.net/?retryWrites=true&w=majority&appName=SolutionsAssurance
+      --mongo-db objectbox_sync_test
+      --debug
 
-volumes:
-  mongo-data:
+      
+    
+
