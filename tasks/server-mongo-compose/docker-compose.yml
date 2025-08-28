@@ -16,7 +16,7 @@ services:
       --model ./objectbox-model.json
       --unsecured-no-authentication       
       --admin-bind 0.0.0.0:9980 
-      --mongo-url mongodb+srv://ably_masha:ably@solutionsassurance.n0kts.mongodb.net/?retryWrites=true&w=majority&appName=SolutionsAssurance
+      --mongo-url mongodb+srv://user:password@solutionsassurance.n0kts.mongodb.net/?retryWrites=true&w=majority&appName=SolutionsAssurance
       --mongo-db objectbox_sync_test
       --debug
 
