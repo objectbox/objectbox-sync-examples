@@ -7,8 +7,8 @@ plugins {
 java {
     // Note: the ObjectBox Java SDK requires at least Java 8
     // Target latest LTS release
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 tasks.withType<JavaCompile> {

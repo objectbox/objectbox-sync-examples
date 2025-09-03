@@ -19,7 +19,10 @@ package io.objectbox.example;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Sync;
-
+import java.math.BigDecimal;
+import io.objectbox.annotation.ExternalType;
+import io.objectbox.annotation.ExternalPropertyType;
+import java.util.Arrays;
 import java.util.Date;
 
 @Sync
@@ -31,14 +34,43 @@ public class Task {
     private String text;
     private Date dateCreated;
     private Date dateFinished;
+    String ownerEmail;
 
-    public Task() {
+    // External mappings
+    @ExternalType(ExternalPropertyType.FLEX_VECTOR)
+    private Object flexList;
+
+    @ExternalType(ExternalPropertyType.MONGO_REGEX)
+    private String[] regex;
+
+    @ExternalType(ExternalPropertyType.DECIMAL_128)
+    private String decimalString;
+
+    BigDecimal getBigDecimal() {
+        return new BigDecimal(decimalString);
     }
 
+    // ✅ Required by ObjectBox
+    public Task() { }
+
+    /** Convenience: text only */
     public Task(String text) {
+        this(text, null);
+    }
+
+    /** Matches call site in TasksSyncDB: new Task(text, currentUserEmail) */
+    public Task(String text, String ownerEmail) {
+        this(text, ownerEmail, null, null, null);
+    }
+
+    public Task(String text,String ownerEmail, Object flexList, String[] regex, String decimalString) {
         this.text = text;
         this.dateCreated = new Date();
         this.dateFinished = new Date(0);
+        this.ownerEmail = ownerEmail;
+        this.flexList = flexList;
+        this.regex = regex;
+        this.decimalString = decimalString;
     }
 
     public long getId() {
@@ -73,6 +105,18 @@ public class Task {
         this.dateCreated = dateCreated;
     }
 
+    public Object getFlexList() { return flexList; }
+    public void setFlexList(Object flexList) { this.flexList = flexList; }
+
+    public String[] getRegex() { return regex; }
+    public void setRegex(String[] regex) { this.regex = regex; }
+
+    public String getDecimalString() { return decimalString; }
+    public void setDecimalString(String decimalString) { this.decimalString = decimalString; }
+
+    public String getOwnerEmail() { return ownerEmail; }
+    public void setOwnerEmail(String ownerEmail) { this.ownerEmail = ownerEmail; }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -80,6 +124,10 @@ public class Task {
                 ", text='" + text + '\'' +
                 ", createdDate=" + dateCreated +
                 ", finishedDate=" + dateFinished +
+                ", ownerEmail='" + ownerEmail + '\'' + 
+                ", flexList=" + flexList +
+                ", regex=" + Arrays.toString(regex) +
+                ", decimalString='" + decimalString + '\'' +
                 '}';
     }
 }
