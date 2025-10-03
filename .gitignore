@@ -1,0 +1,9 @@
+# IDEs
+.idea/
+.vscode/
+
+# Build stuff
+*.class
+
+# DB files
+*.mdb
