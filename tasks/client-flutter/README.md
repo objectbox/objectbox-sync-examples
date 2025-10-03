@@ -25,6 +25,10 @@ flutter pub get
 flutter run
 ```
 
+### Prerequisites
+
+* Ubuntu: If you get an error like "The following required packages were not found: gtk+-3.0", run`sudo apt-get install libgtk-3-dev`
+
 ## Documentation
 
 - [Sync Client](https://sync.objectbox.io/sync-client)
