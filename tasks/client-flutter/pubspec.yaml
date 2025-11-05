@@ -27,8 +27,8 @@ flutter:
 ## Note: these overrides are only for ObjectBox internal development, don't use them in your app.
 #dependency_overrides:
 #  objectbox:
-#    path: ../../../../objectbox
+#    path: ../../../objectbox-dart/objectbox
 #  objectbox_generator:
-#    path: ../../../../generator
+#    path: ../../../objectbox-dart/generator
 #  objectbox_sync_flutter_libs:
-#    path: ../../../../sync_flutter_libs
+#    path: ../../../objectbox-dart/sync_flutter_libs
