@@ -82,3 +82,11 @@ client-cpp-ubuntu24:
 client-cpp-mac:
   extends: .client-cpp
   tags: [mac, x64, xcode]
+
+client-cpp-win:
+  extends: .client-cpp
+  tags: [ windows, cpp ]
+  script:
+    - cd tasks/client-cpp && ./build.sh
+    - cp build/_deps/objectbox-sync-download-src/lib/objectbox.dll build/Debug/ # copy objectbox.dll to the .exe
+    - printf "new \"Buy bananas\"\nls\nexit" | build/Debug/objectbox-examples-tasks-sync
