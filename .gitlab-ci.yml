@@ -56,15 +56,29 @@ client-swift:
     - xcodebuild clean build -scheme client-swift-ios -destination 'platform=iOS Simulator,name=iPhone 11'
     - xcodebuild build -scheme client-swift-macos -destination 'platform=macOS'
 
-client-cpp:
+.client-cpp:
   stage: build
-  tags: [ x64, docker]
-  image: 'objectboxio/$IMAGE'
-  parallel:
-    matrix: # Min CMake version: 3.14
-      - IMAGE: buildenv-base:2025-07-03 # gcc
-      - IMAGE: buildenv-core:2025-07-03 # clang
-      - IMAGE: cbuild-ubuntu24.04:2025-09-30
   script:
     - cd tasks/client-cpp && ./build.sh
     - printf "new \"Buy bananas\"\nls\nexit" | build/objectbox-examples-tasks-sync
+
+# Not using matrix build for nicer job names
+.client-cpp-docker:
+  extends: .client-cpp
+  tags: [ x64, docker]
+
+client-cpp-gcc:
+  extends: .client-cpp-docker
+  image: 'objectboxio/buildenv-base:2025-06-29'
+
+client-cpp-clang:
+  extends: .client-cpp-docker
+  image: 'objectboxio/buildenv-core:2025-07-03'
+
+client-cpp-ubuntu24:
+  extends: .client-cpp-docker
+  image: 'objectboxio/cbuild-ubuntu24.04:2025-09-30'
+
+client-cpp-mac:
+  extends: .client-cpp
+  tags: [mac, x64, xcode]
