@@ -14,12 +14,11 @@ variables:
 stages:
   - build
 
-java-sdk-examples:
+client-java:
   stage: build
   tags: [ docker, linux, x64 ]
   image: objectboxio/buildenv-android:2024-12-09
   script:
-    
     - cd tasks/client-java
     - echo "➡️ Building client-java with Gradle..."
     - ./gradlew clean build
@@ -28,7 +27,14 @@ java-sdk-examples:
     - ./mvnw $MVN_ARGS compile
     - echo "✅ Building client-java with Maven...DONE"
     - cd ../..
+  artifacts:
+    when: always
+    paths:
+      - "**/build/reports/lint-results-debug.html"
 
+client-android:
+  extends: client-java
+  script:
     - echo "➡️ Building client-android-java..."
     - cd tasks/client-android-java
     - ./gradlew clean assembleDebug # Only assemble debug variant
@@ -41,12 +47,7 @@ java-sdk-examples:
     - echo "✅ Building client-android-kotlin...DONE"
     - cd ../..
 
-  artifacts:
-    when: always
-    paths:
-      - "**/build/reports/lint-results-debug.html"
-
-swift-sdk-examples:
+client-swift:
   stage: build
   tags: [mac, x64, xcode]
   script:
