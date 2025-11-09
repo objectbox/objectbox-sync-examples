@@ -55,3 +55,16 @@ client-swift:
     # A simulator named "iPhone 11" is configured on the build machine
     - xcodebuild clean build -scheme client-swift-ios -destination 'platform=iOS Simulator,name=iPhone 11'
     - xcodebuild build -scheme client-swift-macos -destination 'platform=macOS'
+
+client-cpp:
+  stage: build
+  tags: [ x64, docker]
+  image: 'objectboxio/$IMAGE'
+  parallel:
+    matrix: # Min CMake version: 3.14
+      - IMAGE: buildenv-base:2025-07-03 # gcc
+      - IMAGE: buildenv-core:2025-07-03 # clang
+      - IMAGE: cbuild-ubuntu24.04:2025-09-30
+  script:
+    - cd tasks/client-cpp && ./build.sh
+    - printf "new \"Buy bananas\"\nls\nexit" | build/objectbox-examples-tasks-sync
