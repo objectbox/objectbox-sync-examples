@@ -32,16 +32,19 @@ The user-facing part of the Tasks app are the clients.
 Combine the Sync Server with any of the Sync Client examples:
 
 - [client-java](./client-java/): a JVM command-line app written in Java (Gradle and Maven are supported)
+  ([README.md](./client-java/README.md))
 
-- [client-android-java](./client-android-java/): an Android app written in Java
+- [client-android-java](./client-android-java/): an Android app written in Java ([README.md](./client-android-java/README.md))
 
-- [client-android-kotlin](./client-android-kotlin/): an Android app written in Kotlin
+- [client-android-kotlin](./client-android-kotlin/): an Android app written in Kotlin ([README.md](./client-android-kotlin/README.md))
 
-- [client-flutter](./client-flutter/): a Flutter app written in Dart
+- [client-flutter](./client-flutter/): a Flutter app written in Dart ([README.md](./client-flutter/README.md))
 
-- [client-go](./client-go/): a Go command-line app
+- [client-go](./client-go/): a Go command-line app ([README.md](./client-go/README.md))
 
-- [client-swift](./client-swift/): an iOS and macOS app written in Swift
+- [client-swift](./client-swift/): an iOS and macOS app written in Swift ([README.md](./client-swift/README.md))
+
+- [client-cpp](./client-cpp/): a C++ command-line app ([README.md](./client-cpp/README.md))
 
 You can run multiple clients concurrently and on any number of devices.
 
