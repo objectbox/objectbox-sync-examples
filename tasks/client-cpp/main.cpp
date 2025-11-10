@@ -17,10 +17,11 @@
 #define OBX_CPP_FILE // this "materializes" implementations from objectbox.hpp
 
 #include "TasklistCmdlineApp.hpp"
+#include "objectbox-model.h"
 
-using namespace obx;
+using namespace obx; // The primary ObjectBox namespace
 
-int processArgs(int argc, char* argv[], obx::Options& outOptions) {
+int processArgs(int argc, char* argv[], Options& outOptions) {
     // Remember, argv[0] is application path
 
     const char* directory = nullptr;
@@ -51,8 +52,8 @@ int main(int argc, char* argv[]) {
     // this example expect sync-server to be running locally
     std::string syncServerURL = "ws://127.0.0.1:9999";
 
-    std::cout << "** ObjectBox database (https://objectbox.io/) Sync client example (tasks). **\n"
-                 "Get a free Sync Server trial at https://sync.objectbox.io/.\n"
+    std::cout << "** ObjectBox database (https://objectbox.io/) Sync C++ client example (tasks). **\n"
+                 "Check https://objectbox.io/sync for general information on ObjectBox Sync.\n"
                  "You can launch multiple instances of this program in parallel in separate windows,\n"
                  "each with a separate database by starting with a different `--directory dirname` argument.\n"
                  "The clients automatically connect to the sync-server (URL specified in main.cpp).\n"

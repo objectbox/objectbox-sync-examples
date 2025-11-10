@@ -21,7 +21,6 @@
 #include <ctime>
 #include <iostream>
 
-#include "objectbox-model.h"
 #include "objectbox-sync.hpp"
 #include "objectbox.hpp"
 #include "tasklist.obx.hpp"
@@ -135,7 +134,7 @@ public:
 
 protected:
     void splitInput(const std::string& input, std::string& outCmd, std::string& outArg) const {
-        std::string::size_type pos = input.find(" ");
+        std::string::size_type pos = input.find(' ');
         if (pos == std::string::npos) {
             outCmd = input;
             outArg.clear();
@@ -163,13 +162,13 @@ protected:
                   << "    help           display this help" << std::endl;
     }
 
-    uint64_t millisSinceEpoch() const {
+    int64_t millisSinceEpoch() const {
         auto time = std::chrono::system_clock::now().time_since_epoch();
-        return static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::milliseconds>(time).count());
+        return std::chrono::duration_cast<std::chrono::milliseconds>(time).count();
     }
 
     /// Formats the given UNIX timestamp as a human-readable time
-    std::string fmtTime(uint64_t timestamp) const {
+    std::string fmtTime(int64_t timestamp) const {
         if (timestamp == 0) return "";
 
         auto time_point = std::chrono::system_clock::from_time_t(timestamp / 1000);
