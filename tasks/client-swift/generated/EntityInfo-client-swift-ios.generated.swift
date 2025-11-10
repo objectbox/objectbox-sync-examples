@@ -21,19 +21,19 @@ extension Task: ObjectBox.EntityInspectable {
     internal typealias EntityBindingType = TaskBinding
 
     /// Generated metadata used by ObjectBox to persist the entity.
-    internal static var entityInfo = ObjectBox.EntityInfo(name: "Task", id: 1)
+    internal static let entityInfo = ObjectBox.EntityInfo(name: "Task", id: 1)
 
-    internal static var entityBinding = EntityBindingType()
+    internal static let entityBinding = EntityBindingType()
 
     fileprivate static func buildEntity(modelBuilder: ObjectBox.ModelBuilder) throws {
-        let entityBuilder = try modelBuilder.entityBuilder(for: Task.self, id: 1, uid: 264276710932627968)
+        let entityBuilder = try modelBuilder.entityBuilder(for: Task.self, id: 1, uid: 6645479796472661392)
         try entityBuilder.flags(.syncEnabled)
-        try entityBuilder.addProperty(name: "id", type: PropertyType.long, flags: [.id], id: 1, uid: 2060347389124128256)
-        try entityBuilder.addProperty(name: "text", type: PropertyType.string, id: 2, uid: 5618498352941960192)
-        try entityBuilder.addProperty(name: "dateCreated", type: PropertyType.date, id: 3, uid: 3988623040084182272)
-        try entityBuilder.addProperty(name: "dateFinished", type: PropertyType.date, id: 4, uid: 6161809130709835264)
+        try entityBuilder.addProperty(name: "id", type: PropertyType.long, flags: [.id], id: 1, uid: 9211738071025439652)
+        try entityBuilder.addProperty(name: "text", type: PropertyType.string, id: 2, uid: 8804670454579230281)
+        try entityBuilder.addProperty(name: "dateCreated", type: PropertyType.date, id: 4, uid: 1260602348787983453)
+        try entityBuilder.addProperty(name: "dateFinished", type: PropertyType.date, id: 5, uid: 6240065879507520219)
 
-        try entityBuilder.lastProperty(id: 4, uid: 6161809130709835264)
+        try entityBuilder.lastProperty(id: 5, uid: 6240065879507520219)
     }
 }
 
@@ -55,13 +55,13 @@ extension Task {
     /// You may want to use this in queries to specify fetch conditions, for example:
     ///
     ///     box.query { Task.dateCreated > 1234 }
-    internal static var dateCreated: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 3, isPrimaryKey: false) }
+    internal static var dateCreated: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 4, isPrimaryKey: false) }
     /// Generated entity property information.
     ///
     /// You may want to use this in queries to specify fetch conditions, for example:
     ///
     ///     box.query { Task.dateFinished > 1234 }
-    internal static var dateFinished: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 4, isPrimaryKey: false) }
+    internal static var dateFinished: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 5, isPrimaryKey: false) }
 
     fileprivate func __setId(identifier: ObjectBox.Id) {
         self.id = Id(identifier)
@@ -91,7 +91,7 @@ extension ObjectBox.Property where E == Task {
     ///
     ///     box.query { .dateCreated > 1234 }
 
-    internal static var dateCreated: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 3, isPrimaryKey: false) }
+    internal static var dateCreated: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 4, isPrimaryKey: false) }
 
     /// Generated entity property information.
     ///
@@ -99,13 +99,13 @@ extension ObjectBox.Property where E == Task {
     ///
     ///     box.query { .dateFinished > 1234 }
 
-    internal static var dateFinished: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 4, isPrimaryKey: false) }
+    internal static var dateFinished: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 5, isPrimaryKey: false) }
 
 }
 
 
 /// Generated service type to handle persisting and reading entity data. Exposed through `Task.EntityBindingType`.
-internal class TaskBinding: ObjectBox.EntityBinding {
+internal final class TaskBinding: ObjectBox.EntityBinding, Sendable {
     internal typealias EntityType = Task
     internal typealias IdType = Id
 
@@ -126,8 +126,8 @@ internal class TaskBinding: ObjectBox.EntityBinding {
         let propertyOffset_text = propertyCollector.prepare(string: entity.text)
 
         propertyCollector.collect(id, at: 2 + 2 * 1)
-        propertyCollector.collect(entity.dateCreated, at: 2 + 2 * 3)
-        propertyCollector.collect(entity.dateFinished, at: 2 + 2 * 4)
+        propertyCollector.collect(entity.dateCreated, at: 2 + 2 * 4)
+        propertyCollector.collect(entity.dateFinished, at: 2 + 2 * 5)
         propertyCollector.collect(dataOffset: propertyOffset_text, at: 2 + 2 * 2)
     }
 
@@ -136,8 +136,8 @@ internal class TaskBinding: ObjectBox.EntityBinding {
 
         entity.id = entityReader.read(at: 2 + 2 * 1)
         entity.text = entityReader.read(at: 2 + 2 * 2)
-        entity.dateCreated = entityReader.read(at: 2 + 2 * 3)
-        entity.dateFinished = entityReader.read(at: 2 + 2 * 4)
+        entity.dateCreated = entityReader.read(at: 2 + 2 * 4)
+        entity.dateFinished = entityReader.read(at: 2 + 2 * 5)
 
         return entity
     }
@@ -155,7 +155,7 @@ fileprivate func optConstruct<T: RawRepresentable>(_ type: T.Type, rawValue: T.R
 fileprivate func cModel() throws -> OpaquePointer {
     let modelBuilder = try ObjectBox.ModelBuilder()
     try Task.buildEntity(modelBuilder: modelBuilder)
-    modelBuilder.lastEntity(id: 1, uid: 264276710932627968)
+    modelBuilder.lastEntity(id: 1, uid: 6645479796472661392)
     return modelBuilder.finish()
 }
 

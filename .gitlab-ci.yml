@@ -49,7 +49,7 @@ client-android:
 
 client-swift:
   stage: build
-  tags: [mac, x64, xcode]
+  tags: [mac, xcode]
   script:
     - cd tasks/client-swift
     # A simulator named "iPhone 11" is configured on the build machine
