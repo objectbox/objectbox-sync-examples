@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 ObjectBox Ltd.
+ * Copyright 2024-2025 ObjectBox Ltd. https://objectbox.io/
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import io.objectbox.BoxStore;
 import io.objectbox.BoxStoreBuilder;
 import io.objectbox.query.Query;
 import io.objectbox.sync.Sync;
+import io.objectbox.sync.SyncBuilder;
 import io.objectbox.sync.SyncChange;
 import io.objectbox.sync.SyncClient;
 import io.objectbox.sync.SyncCredentials;
@@ -32,21 +33,30 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Thin wrapper around ObjectBox providing a store with ObjectBox Sync (https://objectbox.io/sync) enabled.
+ * Initializes a local BoxStore and connects a SyncClient to the configured server.
+ * Note that this class does all calls to the ObjectBox API; alternatively, you could expose io.objectbox.Box directly.
+ */
 public class TasksSyncDB {
 
-    private final BoxStore tasksBoxStore;
+    private final BoxStore store;
     private final Box<Task> tasksBox;
     private final String syncServerURL = "ws://127.0.0.1";
     private final Logger logger = Logger.getLogger(TasksSyncDB.class.getName());
     private final SyncClient syncClient;
 
     public TasksSyncDB() {
-        logger.log(Level.INFO, String.format("Using ObjectBox %s (%s)", BoxStore.getVersion(), BoxStore.getVersionNative()));
+        logger.log(Level.INFO, String.format("Using ObjectBox %s (%s)", BoxStore.getVersion(),
+                BoxStore.getVersionNative()));
         BoxStoreBuilder storeBuilder = MyObjectBox.builder().name("tasks-synced");
-        this.tasksBoxStore = storeBuilder.build();
-        this.tasksBox = this.tasksBoxStore.boxFor(Task.class);
-        logger.log(Level.INFO, "Starting client with " + syncServerURL);
-        this.syncClient = Sync.client(this.tasksBoxStore, syncServerURL, SyncCredentials.none()).loginListener(syncLoginListener).changeListener(syncChangeListener).buildAndStart();
+        store = storeBuilder.build();
+        tasksBox = store.boxFor(Task.class);
+
+        logger.log(Level.INFO, "Starting ObjectBox Sync client with " + syncServerURL);
+        SyncBuilder syncBuilder = Sync.client(store, syncServerURL, SyncCredentials.none());
+        syncBuilder.loginListener(syncLoginListener).changeListener(syncChangeListener);
+        syncClient = syncBuilder.buildAndStart();
     }
 
     private final SyncChangeListener syncChangeListener = new SyncChangeListener() {
@@ -101,8 +111,8 @@ public class TasksSyncDB {
     }
 
     public void close() {
-        this.syncClient.close();
-        this.tasksBoxStore.close();
+        syncClient.close();
+        store.close();
     }
 
 }
