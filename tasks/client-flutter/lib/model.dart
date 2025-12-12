@@ -17,6 +17,12 @@ class Task {
   @Property(type: PropertyType.date)
   DateTime dateFinished;
 
+  @ExternalName(name: 'nested_metadata_list')
+  List<Map<String, dynamic>> metadataList = [];
+
+  @ExternalName(name: 'nested_metadata')
+  Map<String, Object?> metadata = {};
+
   /// Create task with the given text at the current time.
   Task(this.text, {this.id = 0, DateTime? dateCreated, DateTime? dateFinished})
       : dateCreated = dateCreated ?? DateTime.now(),

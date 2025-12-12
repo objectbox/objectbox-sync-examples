@@ -67,7 +67,20 @@ class ObjectBox {
   /// few milliseconds, e.g. putting many objects, asynchronously.
   /// For this example only a single object is put which would also be fine if
   /// done using [Box.put].
-  Future<void> addTask(String text) => _taskBox.putAsync(Task(text));
+  Future<void> addTask(String text) {
+    final task = Task(text)
+      ..metadataList = [
+        {'name': 'Joe', 'email': 'joe@example.com'},
+        {'name': 'Jane', 'email': 'jane@example.com'},
+      ]
+      ..metadata = {
+        'source': 'flutter_app',
+        'version': 1,
+        'objectBoxVersion': Store.databaseVersion(),
+        'tags': ['demo', 'sync'],
+      };
+    return _taskBox.putAsync(task);
+  }
 
   Future<void> removeTask(int id) => _taskBox.removeAsync(id);
 
