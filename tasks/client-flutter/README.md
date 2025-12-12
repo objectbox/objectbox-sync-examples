@@ -25,6 +25,12 @@ flutter pub get
 flutter run
 ```
 
+If you make changes to the data model, run the ObjectBox generator to update generated files:
+
+```shell
+dart run build_runner build
+```
+
 ### Prerequisites
 
 * Ubuntu: If you get an error like "The following required packages were not found: gtk+-3.0", run`sudo apt-get install libgtk-3-dev`
