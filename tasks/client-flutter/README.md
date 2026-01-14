@@ -33,7 +33,8 @@ dart run build_runner build
 
 ### Prerequisites
 
-* Ubuntu: If you get an error like "The following required packages were not found: gtk+-3.0", run`sudo apt-get install libgtk-3-dev`
+Ubuntu: If you get an error like "The following required packages were not found", make sure
+[prerequisite packages required for Flutter desktop apps are installed](https://docs.flutter.dev/platform-integration/linux/setup#set-up-tooling).
 
 ## Documentation
 
