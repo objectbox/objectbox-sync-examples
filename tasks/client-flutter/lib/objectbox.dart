@@ -24,8 +24,8 @@ class ObjectBox {
     // 10.0.2.2 is your host PC if an app is run in an Android emulator.
     // 127.0.0.1 is your host PC if an app is run in an iOS simulator.
     final syncServerIp = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
-    final syncClient =
-        Sync.client(_store, 'ws://$syncServerIp:9999', SyncCredentials.none());
+    final syncClient = SyncClient(
+        _store, ['ws://$syncServerIp:9999'], [SyncCredentials.none()]);
     syncClient.start();
   }
 
