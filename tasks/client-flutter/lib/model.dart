@@ -40,8 +40,8 @@ class Task {
   String get dateFinishedFormat =>
       DateFormat('dd.MM.yy HH:mm:ss').format(dateFinished);
 
-  /// If the task is new returns 'Created on <date>',
-  /// if it is finished 'Finished on <date>'. The date is formatted
+  /// If the task is new returns `Created on <date>`,
+  /// if it is finished `Finished on <date>`. The date is formatted
   /// for the current locale.
   String getStateText() {
     String text;
