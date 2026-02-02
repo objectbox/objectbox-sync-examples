@@ -25,7 +25,10 @@ class ObjectBox {
     // 127.0.0.1 is your host PC if an app is run in an iOS simulator.
     final syncServerIp = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
     final syncClient = SyncClient(
-        _store, ['ws://$syncServerIp:9999'], [SyncCredentials.none()]);
+      _store,
+      ['ws://$syncServerIp:9999'],
+      [SyncCredentials.none()],
+    );
     syncClient.start();
   }
 
@@ -42,17 +45,22 @@ class ObjectBox {
 
     // Future<Store> openStore() {...} is defined in the generated objectbox.g.dart
     final store = await openStore(
-        directory: p.join(
-            (await getApplicationDocumentsDirectory()).path, "obx-demo-sync"),
-        macosApplicationGroup: "objectbox.demo");
+      directory: p.join(
+        (await getApplicationDocumentsDirectory()).path,
+        "obx-demo-sync",
+      ),
+      macosApplicationGroup: "objectbox.demo",
+    );
     return ObjectBox._create(store);
   }
 
   Stream<List<Task>> getTasks() {
     // Query for all tasks, sorted by their date.
     // https://docs.objectbox.io/queries
-    final builder =
-        _taskBox.query().order(Task_.dateCreated, flags: Order.descending);
+    final builder = _taskBox.query().order(
+      Task_.dateCreated,
+      flags: Order.descending,
+    );
     // Build and watch the query,
     // set triggerImmediately to emit the query immediately on listen.
     return builder

@@ -19,8 +19,8 @@ class Task {
 
   /// Create task with the given text at the current time.
   Task(this.text, {this.id = 0, DateTime? dateCreated, DateTime? dateFinished})
-      : dateCreated = dateCreated ?? DateTime.now(),
-        dateFinished = dateFinished ?? DateTime.fromMicrosecondsSinceEpoch(0);
+    : dateCreated = dateCreated ?? DateTime.now(),
+      dateFinished = dateFinished ?? DateTime.fromMicrosecondsSinceEpoch(0);
 
   bool isFinished() {
     return dateFinished.millisecondsSinceEpoch != 0;
