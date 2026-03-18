@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -51,6 +52,14 @@ class ObjectBox {
       ),
       macosApplicationGroup: "objectbox.demo",
     );
+
+    if (kDebugMode) {
+      debugPrint(
+        "Using ObjectBox database version ${Store.databaseVersion()}"
+        " and Sync protocol version ${SyncClient.protocolVersion()}",
+      );
+    }
+
     return ObjectBox._create(store);
   }
 
