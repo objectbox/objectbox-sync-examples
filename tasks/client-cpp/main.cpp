@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2025 ObjectBox Ltd. All rights reserved.
+ * Copyright 2018-2026 ObjectBox Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,10 +49,14 @@ int processArgs(int argc, char* argv[], Options& outOptions) {
 }
 
 int main(int argc, char* argv[]) {
-    // this example expect sync-server to be running locally
+    // This example expects sync-server to be running locally; edit the URL to match your server.
     std::string syncServerURL = "ws://127.0.0.1:9999";
 
+    std::string version = Store::versionCoreString();
+
     std::cout << "** ObjectBox database (https://objectbox.io/) Sync C++ client example (tasks). **\n"
+                 "Version: " << version << "\n"
+                 "---------------------------------------------------------------------------------------\n"
                  "Check https://objectbox.io/sync for general information on ObjectBox Sync.\n"
                  "You can launch multiple instances of this program in parallel in separate windows,\n"
                  "each with a separate database by starting with a different `--directory dirname` argument.\n"
