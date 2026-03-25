@@ -22,7 +22,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
     id: const obx_int.IdUid(1, 6645479796472661392),
     name: 'Task',
-    lastPropertyId: const obx_int.IdUid(5, 6240065879507520219),
+    lastPropertyId: const obx_int.IdUid(6, 3614515557037150255),
     flags: 2,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
@@ -48,6 +48,12 @@ final _entities = <obx_int.ModelEntity>[
         name: 'dateFinished',
         type: 10,
         flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 3614515557037150255),
+        name: 'syncClock',
+        type: 6,
+        flags: 131072,
       ),
     ],
     relations: <obx_int.ModelRelation>[],
@@ -122,11 +128,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
       },
       objectToFB: (Task object, fb.Builder fbb) {
         final textOffset = fbb.writeString(object.text);
-        fbb.startTable(6);
+        fbb.startTable(7);
         fbb.addInt64(0, object.id);
         fbb.addOffset(1, textOffset);
         fbb.addInt64(3, object.dateCreated.millisecondsSinceEpoch);
         fbb.addInt64(4, object.dateFinished.millisecondsSinceEpoch);
+        fbb.addInt64(5, object.syncClock);
         fbb.finish(fbb.endTable());
         return object.id;
       },
@@ -148,11 +155,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final dateFinishedParam = DateTime.fromMillisecondsSinceEpoch(
           const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
         );
+        final syncClockParam =
+            const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
         final object = Task(
           textParam,
           id: idParam,
           dateCreated: dateCreatedParam,
           dateFinished: dateFinishedParam,
+          syncClock: syncClockParam,
         );
 
         return object;
@@ -179,5 +189,10 @@ class Task_ {
   /// See [Task.dateFinished].
   static final dateFinished = obx.QueryDateProperty<Task>(
     _entities[0].properties[3],
+  );
+
+  /// See [Task.syncClock].
+  static final syncClock = obx.QueryIntegerProperty<Task>(
+    _entities[0].properties[4],
   );
 }

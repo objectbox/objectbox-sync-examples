@@ -22,6 +22,7 @@ import java.util.Objects;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Sync;
+import io.objectbox.annotation.SyncClock;
 
 @Entity
 @Sync
@@ -33,11 +34,15 @@ public class Task {
     private Date dateCreated;
     private Date dateFinished;
 
-    public Task(long id, String text, Date dateCreated, Date dateFinished) {
+    @SyncClock
+    private long syncClock;
+
+    public Task(long id, String text, Date dateCreated, Date dateFinished, long syncClock) {
         this.id = id;
         this.text = text;
         this.dateCreated = dateCreated;
         this.dateFinished = dateFinished;
+        this.syncClock = syncClock;
     }
 
     /**
@@ -96,12 +101,21 @@ public class Task {
         return dateFinished != null && dateFinished.getTime() != 0;
     }
 
+    public long getSyncClock() {
+        return syncClock;
+    }
+
+    public void setSyncClock(long syncClock) {
+        this.syncClock = syncClock;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
         return id == task.id
+                && syncClock == task.syncClock
                 && Objects.equals(text, task.text)
                 && Objects.equals(dateCreated, task.dateCreated)
                 && Objects.equals(dateFinished, task.dateFinished);
@@ -109,6 +123,6 @@ public class Task {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, text, dateCreated, dateFinished);
+        return Objects.hash(id, text, dateCreated, dateFinished, syncClock);
     }
 }

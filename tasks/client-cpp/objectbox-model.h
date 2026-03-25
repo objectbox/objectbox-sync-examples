@@ -30,8 +30,10 @@ static inline OBX_model* create_obx_model() {
     obx_model_property(model, "text", OBXPropertyType_String, 2, 8804670454579230281);
     obx_model_property(model, "date_created", OBXPropertyType_Date, 4, 1260602348787983453);
     obx_model_property(model, "date_finished", OBXPropertyType_Date, 5, 6240065879507520219);
-    obx_model_entity_last_property_id(model, 5, 6240065879507520219);
-    
+    obx_model_property(model, "sync_clock", OBXPropertyType_Long, 6, 3614515557037150255);
+    obx_model_property_flags(model, 131072);
+    obx_model_entity_last_property_id(model, 6, 3614515557037150255);
+
     obx_model_last_entity_id(model, 1, 6645479796472661392);
     return model; // NOTE: the returned model will contain error information if an error occurred.
 }

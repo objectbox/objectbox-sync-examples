@@ -28,6 +28,7 @@ var Task_ = struct {
 	Text         *objectbox.PropertyString
 	DateCreated  *objectbox.PropertyInt64
 	DateFinished *objectbox.PropertyInt64
+	SyncClock    *objectbox.PropertyInt64
 }{
 	Id: &objectbox.PropertyUint64{
 		BaseProperty: &objectbox.BaseProperty{
@@ -53,6 +54,12 @@ var Task_ = struct {
 			Entity: &TaskBinding.Entity,
 		},
 	},
+	SyncClock: &objectbox.PropertyInt64{
+		BaseProperty: &objectbox.BaseProperty{
+			Id:     6,
+			Entity: &TaskBinding.Entity,
+		},
+	},
 }
 
 // GeneratorVersion is called by ObjectBox to verify the compatibility of the generator used to generate this code
@@ -69,7 +76,9 @@ func (task_EntityInfo) AddToModel(model *objectbox.Model) {
 	model.Property("Text", 9, 2, 8804670454579230281)
 	model.Property("DateCreated", 10, 4, 1260602348787983453)
 	model.Property("DateFinished", 10, 5, 6240065879507520219)
-	model.EntityLastPropertyId(5, 6240065879507520219)
+	model.Property("SyncClock", 6, 6, 3614515557037150255)
+	model.PropertyFlags(131072)
+	model.EntityLastPropertyId(6, 3614515557037150255)
 }
 
 // GetId is called by ObjectBox during Put operations to check for existing ID on an object
@@ -112,11 +121,12 @@ func (task_EntityInfo) Flatten(object interface{}, fbb *flatbuffers.Builder, id 
 	var offsetText = fbutils.CreateStringOffset(fbb, obj.Text)
 
 	// build the FlatBuffers object
-	fbb.StartObject(5)
+	fbb.StartObject(6)
 	fbutils.SetUint64Slot(fbb, 0, id)
 	fbutils.SetUOffsetTSlot(fbb, 1, offsetText)
 	fbutils.SetInt64Slot(fbb, 3, propDateCreated)
 	fbutils.SetInt64Slot(fbb, 4, propDateFinished)
+	fbutils.SetInt64Slot(fbb, 5, obj.SyncClock)
 	return nil
 }
 
@@ -148,6 +158,7 @@ func (task_EntityInfo) Load(ob *objectbox.ObjectBox, bytes []byte) (interface{},
 		Text:         fbutils.GetStringSlot(table, 6),
 		DateCreated:  propDateCreated,
 		DateFinished: propDateFinished,
+		SyncClock:    fbutils.GetInt64Slot(table, 14),
 	}, nil
 }
 

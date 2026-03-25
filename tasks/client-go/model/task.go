@@ -31,4 +31,6 @@ type Task struct {
 
 	// DateFinished is initially set to unix epoch (value 0 in ObjectBox DB) to tag the task as "unfinished"
 	DateFinished time.Time `objectbox:"date"`
+
+	SyncClock int64 `objectbox:"sync-clock"`
 }

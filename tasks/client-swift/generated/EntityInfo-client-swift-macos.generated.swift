@@ -32,8 +32,9 @@ extension Task: ObjectBox.EntityInspectable {
         try entityBuilder.addProperty(name: "text", type: PropertyType.string, id: 2, uid: 8804670454579230281)
         try entityBuilder.addProperty(name: "dateCreated", type: PropertyType.date, id: 4, uid: 1260602348787983453)
         try entityBuilder.addProperty(name: "dateFinished", type: PropertyType.date, id: 5, uid: 6240065879507520219)
+        try entityBuilder.addProperty(name: "syncClock", type: PropertyType.long, id: 6, uid: 3614515557037150255)
 
-        try entityBuilder.lastProperty(id: 5, uid: 6240065879507520219)
+        try entityBuilder.lastProperty(id: 6, uid: 3614515557037150255)
     }
 }
 
@@ -62,6 +63,12 @@ extension Task {
     ///
     ///     box.query { Task.dateFinished > 1234 }
     internal static var dateFinished: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 5, isPrimaryKey: false) }
+    /// Generated entity property information.
+    ///
+    /// You may want to use this in queries to specify fetch conditions, for example:
+    ///
+    ///     box.query { Task.syncClock > 1234 }
+    internal static var syncClock: Property<Task, Int64, Void> { return Property<Task, Int64, Void>(propertyId: 6, isPrimaryKey: false) }
 
     fileprivate func __setId(identifier: ObjectBox.Id) {
         self.id = Id(identifier)
@@ -101,6 +108,14 @@ extension ObjectBox.Property where E == Task {
 
     internal static var dateFinished: Property<Task, Date?, Void> { return Property<Task, Date?, Void>(propertyId: 5, isPrimaryKey: false) }
 
+    /// Generated entity property information.
+    ///
+    /// You may want to use this in queries to specify fetch conditions, for example:
+    ///
+    ///     box.query { .syncClock > 1234 }
+
+    internal static var syncClock: Property<Task, Int64, Void> { return Property<Task, Int64, Void>(propertyId: 6, isPrimaryKey: false) }
+
 }
 
 
@@ -128,6 +143,7 @@ internal final class TaskBinding: ObjectBox.EntityBinding, Sendable {
         propertyCollector.collect(id, at: 2 + 2 * 1)
         propertyCollector.collect(entity.dateCreated, at: 2 + 2 * 4)
         propertyCollector.collect(entity.dateFinished, at: 2 + 2 * 5)
+        propertyCollector.collect(entity.syncClock, at: 2 + 2 * 6)
         propertyCollector.collect(dataOffset: propertyOffset_text, at: 2 + 2 * 2)
     }
 
@@ -138,6 +154,7 @@ internal final class TaskBinding: ObjectBox.EntityBinding, Sendable {
         entity.text = entityReader.read(at: 2 + 2 * 2)
         entity.dateCreated = entityReader.read(at: 2 + 2 * 4)
         entity.dateFinished = entityReader.read(at: 2 + 2 * 5)
+        entity.syncClock = entityReader.read(at: 2 + 2 * 6)
 
         return entity
     }

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -18,6 +19,10 @@ class ObjectBox {
   late final Box<Task> _taskBox;
 
   ObjectBox._create(this._store) {
+    final v = Store.databaseVersion();
+    // Log ObjectBox version - this will appear in Android logcat
+    log('ObjectBox version: ${Store.databaseVersion()}');
+    
     _taskBox = _store.box();
 
     // TODO configure actual sync server address and authentication

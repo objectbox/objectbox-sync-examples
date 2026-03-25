@@ -17,8 +17,10 @@ class Task {
   @Property(type: PropertyType.date)
   DateTime dateFinished;
 
+  int syncClock;
+
   /// Create task with the given text at the current time.
-  Task(this.text, {this.id = 0, DateTime? dateCreated, DateTime? dateFinished})
+  Task(this.text, {this.id = 0, DateTime? dateCreated, DateTime? dateFinished, this.syncClock = 0})
     : dateCreated = dateCreated ?? DateTime.now(),
       dateFinished = dateFinished ?? DateTime.fromMicrosecondsSinceEpoch(0);
 

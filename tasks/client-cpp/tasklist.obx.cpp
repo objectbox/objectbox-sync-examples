@@ -6,6 +6,7 @@ const obx::Property<Task, OBXPropertyType_Long> Task_::id(1);
 const obx::Property<Task, OBXPropertyType_String> Task_::text(2);
 const obx::Property<Task, OBXPropertyType_Date> Task_::date_created(4);
 const obx::Property<Task, OBXPropertyType_Date> Task_::date_finished(5);
+const obx::Property<Task, OBXPropertyType_Long> Task_::sync_clock(6);
 
 void Task::_OBX_MetaInfo::toFlatBuffer(flatbuffers::FlatBufferBuilder& fbb, const Task& object) {
     fbb.Clear();
@@ -15,6 +16,7 @@ void Task::_OBX_MetaInfo::toFlatBuffer(flatbuffers::FlatBufferBuilder& fbb, cons
     fbb.AddOffset(6, offsettext);
     fbb.AddElement(10, object.date_created);
     fbb.AddElement(12, object.date_finished);
+    fbb.AddElement(14, object.sync_clock);
     flatbuffers::Offset<flatbuffers::Table> offset;
     offset.o = fbb.EndTable(fbStart);
     fbb.Finish(offset);
@@ -46,5 +48,6 @@ void Task::_OBX_MetaInfo::fromFlatBuffer(const void* data, size_t, Task& outObje
     }
     outObject.date_created = table->GetField<int64_t>(10, 0);
     outObject.date_finished = table->GetField<int64_t>(12, 0);
+    outObject.sync_clock = table->GetField<int64_t>(14, 0);
 }
 

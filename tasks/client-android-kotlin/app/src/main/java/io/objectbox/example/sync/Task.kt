@@ -19,6 +19,7 @@ package io.objectbox.example.sync
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.annotation.Sync
+import io.objectbox.annotation.SyncClock
 import java.util.Date
 
 @Entity
@@ -28,7 +29,9 @@ data class Task(
     var id: Long = 0,
     var text: String? = null,
     var dateCreated: Date? = null,
-    var dateFinished: Date? = null
+    var dateFinished: Date? = null,
+    @SyncClock
+    var syncClock: Long = 0
 ) {
 
     /**

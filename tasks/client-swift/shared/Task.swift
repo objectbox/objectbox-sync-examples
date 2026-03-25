@@ -23,6 +23,8 @@ class Task: Identifiable, CustomStringConvertible {
     var text: String = ""
     var dateCreated: Date?
     var dateFinished: Date?
+    // objectbox: sync-clock
+    var syncClock: Int64 = 0
     var isDone: Bool {
         get {
             return dateFinished != nil && dateFinished?.timeIntervalSince1970 != 0

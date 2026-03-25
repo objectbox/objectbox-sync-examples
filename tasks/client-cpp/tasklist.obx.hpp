@@ -19,6 +19,7 @@ struct Task {
     int64_t date_created;
     /// If not set (zero value), the task is not finished.
     int64_t date_finished;
+    int64_t sync_clock;
 
     struct _OBX_MetaInfo {
         static constexpr obx_schema_id entityId() { return 1; }
@@ -44,5 +45,6 @@ struct Task_ {
     static const obx::Property<Task, OBXPropertyType_String> text;
     static const obx::Property<Task, OBXPropertyType_Date> date_created;
     static const obx::Property<Task, OBXPropertyType_Date> date_finished;
+    static const obx::Property<Task, OBXPropertyType_Long> sync_clock;
 };
 

@@ -10,4 +10,6 @@ table Task {
     /// objectbox:date
     /// If not set (zero value), the task is not finished.
     date_finished: long;
+
+    sync_clock: long;
 }

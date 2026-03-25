@@ -19,6 +19,7 @@ package io.objectbox.example;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Sync;
+import io.objectbox.annotation.SyncClock;
 
 import java.util.Date;
 
@@ -31,6 +32,9 @@ public class Task {
     private String text;
     private Date dateCreated;
     private Date dateFinished;
+
+    @SyncClock
+    private long syncClock;
 
     public Task() {
     }
@@ -71,6 +75,14 @@ public class Task {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public long getSyncClock() {
+        return syncClock;
+    }
+
+    public void setSyncClock(long syncClock) {
+        this.syncClock = syncClock;
     }
 
     @Override
