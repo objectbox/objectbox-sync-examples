@@ -19,10 +19,6 @@ class ObjectBox {
   late final Box<Task> _taskBox;
 
   ObjectBox._create(this._store) {
-    final v = Store.databaseVersion();
-    // Log ObjectBox version - this will appear in Android logcat
-    log('ObjectBox version: ${Store.databaseVersion()}');
-    
     _taskBox = _store.box();
 
     // TODO configure actual sync server address and authentication
@@ -40,6 +36,8 @@ class ObjectBox {
 
   /// Create an instance of ObjectBox to use throughout the app.
   static Future<ObjectBox> create() async {
+    log('ObjectBox version: ${Store.databaseVersion()}');
+
     // Note: setting a unique directory is recommended if running on desktop
     // platforms. If none is specified, the default directory is created in the
     // users documents directory, which will not be unique between apps.
@@ -49,12 +47,15 @@ class ObjectBox {
     // Note: set macosApplicationGroup for sandboxed macOS applications, see the
     // info boxes at https://docs.objectbox.io/getting-started for details.
 
+    final directory = p.join(
+      (await getApplicationDocumentsDirectory()).path,
+      "obx-demo-sync",
+    );
+    log('ObjectBox directory: $directory');
+
     // Future<Store> openStore() {...} is defined in the generated objectbox.g.dart
     final store = await openStore(
-      directory: p.join(
-        (await getApplicationDocumentsDirectory()).path,
-        "obx-demo-sync",
-      ),
+      directory: directory,
       macosApplicationGroup: "objectbox.demo",
     );
 
