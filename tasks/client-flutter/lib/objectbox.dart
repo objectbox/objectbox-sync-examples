@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -36,36 +35,32 @@ class ObjectBox {
 
   /// Create an instance of ObjectBox to use throughout the app.
   static Future<ObjectBox> create() async {
-    log('ObjectBox version: ${Store.databaseVersion()}');
-
     // Note: setting a unique directory is recommended if running on desktop
     // platforms. If none is specified, the default directory is created in the
     // users documents directory, which will not be unique between apps.
     // On mobile this is typically fine, as each app has its own directory
     // structure.
-
-    // Note: set macosApplicationGroup for sandboxed macOS applications, see the
-    // info boxes at https://docs.objectbox.io/getting-started for details.
-
     final directory = p.join(
       (await getApplicationDocumentsDirectory()).path,
       "obx-demo-sync",
     );
-    log('ObjectBox directory: $directory');
+
+    // Print versions before opening the store (which might fail)
+    log('Database version: ${Store.databaseVersion()}', name: 'ObjectBox');
+    log('Database directory: $directory', name: 'ObjectBox');
+    log(
+      'Sync protocol version: ${SyncClient.protocolVersion()}',
+      name: 'ObjectBox',
+    );
+
+    // Note: set macosApplicationGroup for sandboxed macOS applications, see the
+    // Store constructor documentation for details.
 
     // Future<Store> openStore() {...} is defined in the generated objectbox.g.dart
     final store = await openStore(
       directory: directory,
       macosApplicationGroup: "objectbox.demo",
     );
-
-    if (kDebugMode) {
-      debugPrint(
-        "Using ObjectBox database version ${Store.databaseVersion()}"
-        " and Sync protocol version ${SyncClient.protocolVersion()}",
-      );
-    }
-
     return ObjectBox._create(store);
   }
 
