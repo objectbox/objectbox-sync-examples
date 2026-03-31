@@ -21,7 +21,6 @@ import io.objectbox.BoxStore;
 import io.objectbox.BoxStoreBuilder;
 import io.objectbox.query.Query;
 import io.objectbox.sync.Sync;
-import io.objectbox.sync.SyncBuilder;
 import io.objectbox.sync.SyncChange;
 import io.objectbox.sync.SyncClient;
 import io.objectbox.sync.SyncCredentials;
@@ -34,7 +33,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Thin wrapper around ObjectBox providing a store with ObjectBox Sync (https://objectbox.io/sync) enabled.
+ * Thin wrapper around ObjectBox providing a store with <a href="https://objectbox.io/sync">ObjectBox Sync</a> enabled.
  * Initializes a local BoxStore and connects a SyncClient to the configured server.
  * Note that this class does all calls to the ObjectBox API; alternatively, you could expose io.objectbox.Box directly.
  */
@@ -42,7 +41,7 @@ public class TasksSyncDB {
 
     private final BoxStore store;
     private final Box<Task> tasksBox;
-    private final String syncServerURL = "ws://127.0.0.1";
+    private static final String SYNC_SERVER_URL = "ws://127.0.0.1";
     private final Logger logger = Logger.getLogger(TasksSyncDB.class.getName());
     private final SyncClient syncClient;
 
@@ -53,10 +52,13 @@ public class TasksSyncDB {
         store = storeBuilder.build();
         tasksBox = store.boxFor(Task.class);
 
-        logger.log(Level.INFO, "Starting ObjectBox Sync client with " + syncServerURL);
-        SyncBuilder syncBuilder = Sync.client(store, syncServerURL, SyncCredentials.none());
-        syncBuilder.loginListener(syncLoginListener).changeListener(syncChangeListener);
-        syncClient = syncBuilder.buildAndStart();
+        logger.log(Level.INFO, "Starting ObjectBox Sync client with " + SYNC_SERVER_URL);
+        syncClient = Sync.client(store)
+                .url(SYNC_SERVER_URL)
+                .credentials(SyncCredentials.none())
+                .loginListener(syncLoginListener)
+                .changeListener(syncChangeListener)
+                .buildAndStart();
     }
 
     private final SyncChangeListener syncChangeListener = new SyncChangeListener() {
@@ -88,14 +90,14 @@ public class TasksSyncDB {
     }
 
     public Task getTaskById(long id) {
-        return tasksBox.get(id) ;
+        return tasksBox.get(id);
     }
 
     public List<Task> getUnfinishedTasks() {
         try (Query<Task> query = tasksBox.query(
                 Task_.dateFinished.isNull()
                         .or(Task_.dateFinished.equal(new Date(0)))
-            ).build()) {
+        ).build()) {
             return query.find();
         }
     }

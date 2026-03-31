@@ -67,7 +67,9 @@ object ObjectBox {
         }
 
         // Note: given BoxStore keeps a reference to Sync client
-        Sync.client(boxStore, SYNC_SERVER_URL, SyncCredentials.none())
+        Sync.client(boxStore)
+            .url(SYNC_SERVER_URL)
+            .credentials(SyncCredentials.none())
             .changeListener { syncChanges: Array<SyncChange> ->
                 Log.i(App.TAG, "Changes: " + syncChanges.size)
                 syncChangesLiveData.postValue(syncChanges.toList())

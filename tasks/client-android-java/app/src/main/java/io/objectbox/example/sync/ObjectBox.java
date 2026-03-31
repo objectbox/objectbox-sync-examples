@@ -25,6 +25,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
 import io.objectbox.Box;
 import io.objectbox.BoxStore;
 import io.objectbox.BoxStoreBuilder;
@@ -59,7 +60,8 @@ public class ObjectBox {
                 .androidContext(context.getApplicationContext());
         try {
             boxStore = storeBuilder.build();
-        } catch (FileCorruptException e) { // Demonstrate handling issues caused by devices with a broken file system
+        } catch (FileCorruptException e) {
+            // Demonstrate handling issues caused by devices with a broken file system
             Log.w(App.TAG, "File corrupt, trying previous data snapshot...", e);
             // Retrying requires ObjectBox 2.7.1+
             storeBuilder.usePreviousCommit();
@@ -80,7 +82,9 @@ public class ObjectBox {
         };
 
         // Note: given BoxStore keeps a reference to Sync client
-        Sync.client(boxStore, SYNC_SERVER_URL, SyncCredentials.none())
+        Sync.client(boxStore)
+                .url(SYNC_SERVER_URL)
+                .credentials(SyncCredentials.none())
                 .changeListener(syncChanges -> {
                     Log.i(App.TAG, "Changes: " + syncChanges.length);
                     syncChangesLiveData.postValue(Arrays.asList(syncChanges));
