@@ -17,7 +17,7 @@ stages:
 client-java:
   stage: build
   tags: [ docker, linux, x64 ]
-  image: objectboxio/buildenv-android:2024-12-09
+  image: objectboxio/buildenv-android:2024-12-09 # Includes JDK 21, Android build-tools/35.0.0 and platforms/android-35
   script:
     - cd tasks/client-java
     - echo "➡️ Building client-java with Gradle..."
