@@ -15,20 +15,6 @@ buildscript {
         // For ObjectBox: add the Gradle plugin (it is applied in the app build script)
         classpath("io.objectbox:objectbox-gradle-plugin:$objectboxVersion")
     }
-
-    repositories {
-        google()
-        // For ObjectBox: dependencies are available on Central
-        mavenCentral()
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        // For ObjectBox: dependencies are available on Central
-        mavenCentral()
-    }
 }
 
 // Use "all" Gradle distribution to get source code and API docs
