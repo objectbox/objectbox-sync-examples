@@ -1,7 +1,7 @@
-// For ObjectBox: see the root build script on how to add required plugins and repositories
-
 plugins {
     id("application")
+    // For ObjectBox: apply the ObjectBox plugin
+    alias(libs.plugins.objectbox)
 }
 
 java {
@@ -24,22 +24,12 @@ application {
     mainClass.set("io.objectbox.example.Main")
 }
 
-// For ObjectBox: reference common version defined in root built script
-val objectboxVersion: String by rootProject.extra
-
 dependencies {
-    // For ObjectBox: add the Java SDK
-    implementation("io.objectbox:objectbox-java:$objectboxVersion")
-
-    // For ObjectBox: add libraries for all platforms supported by your application.
-    // Note that the ObjectBox Gradle plugin would automatically add the one matching your current machine.
-    // Also, libraries for more platforms than added below are available, check Maven Central.
-    implementation("io.objectbox:objectbox-sync-windows:$objectboxVersion")
-    implementation("io.objectbox:objectbox-sync-linux:$objectboxVersion")
-    implementation("io.objectbox:objectbox-sync-macos:$objectboxVersion")
+    // For ObjectBox: optionally add database libraries for all platforms supported by your application.
+    // If you add none, the ObjectBox Gradle plugin automatically adds the one matching your current machine.
+    implementation(libs.objectbox.linux)
+    implementation(libs.objectbox.linux.arm64)
+    implementation(libs.objectbox.linux.armv7)
+    implementation(libs.objectbox.macos)
+    implementation(libs.objectbox.windows)
 }
-
-// For ObjectBox: apply the Sync plugin.
-// Note that the plugin is applied after the dependencies block so it can detect
-// manually added ObjectBox dependencies.
-apply(plugin = "io.objectbox.sync")

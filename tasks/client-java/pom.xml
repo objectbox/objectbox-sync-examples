@@ -33,16 +33,31 @@
         ObjectBox platform-specific libraries.
         Add or remove them as needed to match what your application supports.
         -->
+        <!-- Linux (x64) -->
         <dependency>
             <groupId>io.objectbox</groupId>
             <artifactId>objectbox-sync-linux</artifactId>
             <version>${objectboxVersion}</version>
         </dependency>
+        <!-- Linux (32-bit ARM) -->
+        <dependency>
+            <groupId>io.objectbox</groupId>
+            <artifactId>objectbox-sync-linux-armv7</artifactId>
+            <version>${objectboxVersion}</version>
+        </dependency>
+        <!-- Linux (64-bit ARM) -->
+        <dependency>
+            <groupId>io.objectbox</groupId>
+            <artifactId>objectbox-sync-linux-arm64</artifactId>
+            <version>${objectboxVersion}</version>
+        </dependency>
+        <!-- macOS (Intel and Apple Silicon) -->
         <dependency>
             <groupId>io.objectbox</groupId>
             <artifactId>objectbox-sync-macos</artifactId>
             <version>${objectboxVersion}</version>
         </dependency>
+        <!-- Windows (x64) -->
         <dependency>
             <groupId>io.objectbox</groupId>
             <artifactId>objectbox-sync-windows</artifactId>

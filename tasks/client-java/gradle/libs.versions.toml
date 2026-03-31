@@ -1,0 +1,18 @@
+[versions]
+objectbox = "5.4.1"
+
+versions = "0.52.0" # https://github.com/ben-manes/gradle-versions-plugin/releases
+
+[libraries]
+# For ObjectBox: optionally add database libraries for all platforms supported by your application.
+# If you add none, the ObjectBox Gradle plugin automatically adds the one matching your current machine.
+objectbox-linux = { module = "io.objectbox:objectbox-sync-linux", version.ref = "objectbox" }
+objectbox-linux-arm64 = { module = "io.objectbox:objectbox-sync-linux-arm64", version.ref = "objectbox" }
+objectbox-linux-armv7 = { module = "io.objectbox:objectbox-sync-linux-armv7", version.ref = "objectbox" }
+objectbox-macos = { module = "io.objectbox:objectbox-sync-macos", version.ref = "objectbox" }
+objectbox-windows = { module = "io.objectbox:objectbox-sync-windows", version.ref = "objectbox" }
+
+[plugins]
+# For ObjectBox: use the Sync variant of the plugin
+objectbox = { id = "io.objectbox.sync", version.ref = "objectbox" }
+versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }

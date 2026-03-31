@@ -1,20 +1,11 @@
 plugins {
-    // Plugin to help find updated dependencies
-    // https://github.com/ben-manes/gradle-versions-plugin/releases
-    id("com.github.ben-manes.versions") version "0.51.0"
-}
-
-buildscript {
-    // For ObjectBox: define common version for tools and dependencies
-    val objectboxVersion by extra("5.4.1")
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.7.3")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.10")
-
-        // For ObjectBox: add the Gradle plugin (it is applied in the app build script)
-        classpath("io.objectbox:objectbox-gradle-plugin:$objectboxVersion")
-    }
+    // Plugin to help us find updated dependencies, not required to use ObjectBox
+    alias(libs.plugins.versions)
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    // For ObjectBox: add the kapt and ObjectBox plugin
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.objectbox) apply false
 }
 
 // Use "all" Gradle distribution to get source code and API docs
