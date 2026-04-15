@@ -45,6 +45,20 @@ class TaskStore: ObservableObject {
         }
     }
     
+    class MyChangeListener: SyncChangeListener {
+        var logger: Logger
+        
+        init(logger: Logger) {
+            self.logger = logger
+        }
+        
+        func changed(_ changes: [obx_schema_id : SyncChange]) {
+            for (schemaId, change) in changes {
+                logger.info("Received change for entity id \(schemaId): \(change.puts.count) puts, \(change.removals.count) removals")
+            }
+        }
+    }
+    
     init() {
         let store = try! Store.createStore()
         tasksBox = store.box(for: Task.self)
@@ -58,6 +72,7 @@ class TaskStore: ObservableObject {
         )
         try! client.start()
         client.connectionListener = MyConnectionListener(logger: logger)
+        client.changeListener = MyChangeListener(logger: logger)
     }
     
     func putTask(task: Task) {
