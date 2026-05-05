@@ -1,5 +1,5 @@
 [versions]
-objectbox = "5.4.1"
+objectbox = "5.4.2"
 
 versions = "0.52.0" # https://github.com/ben-manes/gradle-versions-plugin/releases
 
