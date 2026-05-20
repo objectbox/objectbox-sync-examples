@@ -23,7 +23,7 @@ class Task: Identifiable, CustomStringConvertible {
     var text: String = ""
     var dateCreated: Date?
     var dateFinished: Date?
-    // objectbox: sync-clock
+    // objectbox: syncClock
     var syncClock: Int64 = 0
     var isDone: Bool {
         get {
