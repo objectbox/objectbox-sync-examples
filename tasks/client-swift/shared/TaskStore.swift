@@ -20,6 +20,9 @@ import os
 
 class TaskStore: ObservableObject {
     
+    // Connects to a server running on localhost at port 9999 using an unecrypted connection
+    private let serverURL = "ws://127.0.0.1:9999"
+    
     private var tasksBox: Box<Task>
     private var tasksBoxObserver: Observer?
     private let logger = Logger(
@@ -62,15 +65,18 @@ class TaskStore: ObservableObject {
     init() {
         let store = try! Store.createStore()
         tasksBox = store.box(for: Task.self)
-        tasksBoxObserver = tasksBox.subscribe(dispatchQueue: .main) { updatedTasks, error in
+        tasksBoxObserver = tasksBox.subscribe(dispatchQueue: .main) {
+            updatedTasks,
+            error in
             self.tasks = updatedTasks.reversed()
         }
-        let client = try! Sync.makeClient(
-            store: store,
-            urlString: "ws://127.0.0.1:9999",
-            credentials: SyncCredentials.makeNone()
-        )
+
+        let configuration = Sync.Configuration(store: store, url: serverURL)
+        configuration.credentials = [SyncCredentials.makeNone()]
+
+        let client = try! Sync.makeClient(configuration: configuration)
         try! client.start()
+
         client.connectionListener = MyConnectionListener(logger: logger)
         client.changeListener = MyChangeListener(logger: logger)
     }
