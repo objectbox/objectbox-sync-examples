@@ -92,9 +92,9 @@ class TaskStore: ObservableObject {
     }
     
     func changeTaskStatus(task: Task, isDone: Bool) {
-        logger.info("Changing task status from \(task.isDone) to \(isDone) for \(task)")
         task.isDone = isDone
         try! tasksBox.put(task)
+        logger.info("Changed task isDone to \(isDone): \(task)")
     }
     
     deinit {
