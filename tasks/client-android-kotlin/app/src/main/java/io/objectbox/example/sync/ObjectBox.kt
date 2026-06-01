@@ -22,6 +22,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.objectbox.BoxStore
 import io.objectbox.android.Admin
+import io.objectbox.android.sync.MeshConfig
 import io.objectbox.config.ValidateOnOpenModePages
 import io.objectbox.exception.FileCorruptException
 import io.objectbox.kotlin.boxFor
@@ -35,6 +36,8 @@ import io.objectbox.sync.listener.SyncLoginListener
  * Inserts demo data if no Objects are stored.
  */
 object ObjectBox {
+
+    private const val USE_MESH_SYNC = false
 
     private const val SYNC_SERVER_URL = "ws://10.0.2.2"
 
@@ -67,7 +70,7 @@ object ObjectBox {
         }
 
         // Note: given BoxStore keeps a reference to Sync client
-        Sync.client(boxStore)
+        val syncClient = Sync.client(boxStore)
             .url(SYNC_SERVER_URL)
             .credentials(SyncCredentials.none())
             .changeListener { syncChanges: Array<SyncChange> ->
@@ -76,6 +79,14 @@ object ObjectBox {
             }
             .loginListener(loginListener)
             .buildAndStart()
+
+        // If enabled, configure mesh sync using the package name as service ID
+        if (USE_MESH_SYNC) {
+            MeshConfig.builder(context)
+                .serviceId(context.packageName)
+                .build()
+                .applyTo(syncClient)
+        }
 
         // Enable ObjectBox Admin on debug builds.
         // https://docs.objectbox.io/data-browser

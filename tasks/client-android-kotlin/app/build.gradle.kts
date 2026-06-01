@@ -60,4 +60,7 @@ dependencies {
     // https://docs.objectbox.io/data-browser
     debugImplementation(libs.objectbox.android.admin)
     releaseImplementation(libs.objectbox.android)
+
+    // For ObjectBox Mesh Sync
+    implementation(libs.play.nearby)
 }
