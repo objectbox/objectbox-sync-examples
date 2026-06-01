@@ -37,7 +37,7 @@ import io.objectbox.sync.listener.SyncLoginListener
  */
 object ObjectBox {
 
-    private const val USE_MESH_SYNC = false
+    private const val USE_MESH_SYNC = true
 
     private const val SYNC_SERVER_URL = "ws://10.0.2.2"
 
