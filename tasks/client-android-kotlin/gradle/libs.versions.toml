@@ -1,6 +1,9 @@
 [versions]
 objectbox = "5.4.2"
 
+# For ObjectBox Mesh Sync
+nearby = "19.3.0"
+
 # Find compatible versions at https://kotlinlang.org/docs/gradle-configure-project.html#apply-the-plugin
 agp = "8.10.1"
 # Note: when updating make sure to update coroutines dependency to be compatible
@@ -19,6 +22,9 @@ objectbox-android = { module = "io.objectbox:objectbox-sync-android", version.re
 # ObjectBox with Admin web app for debugging
 # https://docs.objectbox.io/data-browser
 objectbox-android-admin = { module = "io.objectbox:objectbox-sync-android-objectbrowser", version.ref = "objectbox" }
+
+# For ObjectBox Mesh Sync
+play-nearby = { module = "com.google.android.gms:play-services-nearby", version.ref = "nearby" }
 
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
