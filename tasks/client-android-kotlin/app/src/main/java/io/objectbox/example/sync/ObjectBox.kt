@@ -83,7 +83,7 @@ object ObjectBox {
         // If enabled, configure mesh sync using the package name as service ID
         if (USE_MESH_SYNC) {
             MeshConfig.builder(context)
-                .serviceId(context.packageName)
+                .serviceId("io.objectbox.example.sync.tasks")
                 .build()
                 .applyTo(syncClient)
         }
