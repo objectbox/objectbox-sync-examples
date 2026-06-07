@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:objectbox_sync_flutter_libs/objectbox_sync_flutter_libs.dart'
+    show createMeshConfig;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -17,20 +19,26 @@ class ObjectBox {
   /// A Box of tasks.
   late final Box<Task> _taskBox;
 
-  ObjectBox._create(this._store) {
+  ObjectBox._(this._store) {
     _taskBox = _store.box();
+  }
 
+  static Future<ObjectBox> _create(Store store) async {
     // TODO configure actual sync server address and authentication
     // For configuration and docs, see objectbox/lib/src/sync.dart
     // 10.0.2.2 is your host PC if an app is run in an Android emulator.
     // 127.0.0.1 is your host PC if an app is run in an iOS simulator.
     final syncServerIp = Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
+    final mesh = await createMeshConfig('io.objectbox.example.sync.tasks');
     final syncClient = SyncClient(
-      _store,
+      store,
       ['ws://$syncServerIp:9999'],
       [SyncCredentials.none()],
+      mesh: mesh,
     );
     syncClient.start();
+
+    return ObjectBox._(store);
   }
 
   /// Create an instance of ObjectBox to use throughout the app.
@@ -61,7 +69,7 @@ class ObjectBox {
       directory: directory,
       macosApplicationGroup: "objectbox.demo",
     );
-    return ObjectBox._create(store);
+    return await ObjectBox._create(store);
   }
 
   Stream<List<Task>> getTasks() {
