@@ -17,9 +17,9 @@ dependencies:
     sdk: flutter
   objectbox: ^5.3.1
   objectbox_sync_flutter_libs: any # For Sync support use this instead of objectbox_flutter_libs.
-  intl: any
-  path_provider: ^2.0.10
-  path: ^1.8.0
+  intl: ^0.20.2
+  path_provider: ^2.1.5
+  path: ^1.9.1
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -28,7 +28,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  build_runner: ^2.0.0
+  build_runner: ^2.15.0
   objectbox_generator: any
 
 # For information on the generic Dart part of this file, see the
