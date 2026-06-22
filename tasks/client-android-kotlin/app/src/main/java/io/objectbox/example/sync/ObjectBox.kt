@@ -22,10 +22,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.objectbox.BoxStore
 import io.objectbox.android.Admin
-import io.objectbox.android.sync.MeshConfig
 import io.objectbox.config.ValidateOnOpenModePages
 import io.objectbox.exception.FileCorruptException
 import io.objectbox.kotlin.boxFor
+import io.objectbox.meshsync.android.AndroidMeshSync
 import io.objectbox.sync.Sync
 import io.objectbox.sync.SyncChange
 import io.objectbox.sync.SyncCredentials
@@ -70,7 +70,7 @@ object ObjectBox {
         }
 
         // Note: given BoxStore keeps a reference to Sync client
-        val syncClient = Sync.client(boxStore)
+        Sync.client(boxStore)
             .url(SYNC_SERVER_URL)
             .credentials(SyncCredentials.none())
             .changeListener { syncChanges: Array<SyncChange> ->
@@ -78,15 +78,14 @@ object ObjectBox {
                 syncChangesLiveData.postValue(syncChanges.toList())
             }
             .loginListener(loginListener)
+            .apply {
+                // If enabled, configure mesh sync using the common mesh ID of all task example apps
+                // and default settings.
+                if (USE_MESH_SYNC) {
+                    mesh(AndroidMeshSync.createConfig(context, "io.objectbox.example.sync.tasks"))
+                }
+            }
             .buildAndStart()
-
-        // If enabled, configure mesh sync using the package name as service ID
-        if (USE_MESH_SYNC) {
-            MeshConfig.builder(context)
-                .serviceId("io.objectbox.example.sync.tasks")
-                .build()
-                .applyTo(syncClient)
-        }
 
         // Enable ObjectBox Admin on debug builds.
         // https://docs.objectbox.io/data-browser

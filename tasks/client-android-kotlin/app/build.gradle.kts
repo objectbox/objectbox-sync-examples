@@ -50,17 +50,12 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
-    // For now, use a preview version of the ObjectBox Android database library
-    val meshSyncPreviewVersion = "6.0.0-preview1"
-    debugImplementation("io.objectbox:objectbox-sync-android-db-admin:$meshSyncPreviewVersion")
-    releaseImplementation("io.objectbox:objectbox-sync-android-db:$meshSyncPreviewVersion")
-
-
     // For ObjectBox: optionally add Android database library with Admin (for debug builds only)
     // https://docs.objectbox.io/data-browser
     debugImplementation(libs.objectbox.android.admin)
     releaseImplementation(libs.objectbox.android)
 
     // For ObjectBox Mesh Sync
-    implementation(libs.play.nearby)
+    debugImplementation(libs.objectbox.meshsync.android.admin)
+    releaseImplementation(libs.objectbox.meshsync.android)
 }
