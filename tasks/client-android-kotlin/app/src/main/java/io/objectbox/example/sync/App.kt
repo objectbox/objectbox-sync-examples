@@ -16,16 +16,25 @@
 
 package io.objectbox.example.sync
 
+import android.app.Activity
 import android.app.Application
 
 class App : Application() {
 
+    val appContainer = AppContainer(this)
+
     override fun onCreate() {
         super.onCreate()
-        ObjectBox.init(this)
+        appContainer.objectBox.initStore()
     }
 
     companion object {
         const val TAG = "OBXSync"
     }
 }
+
+fun Application.getAppContainer(): AppContainer =
+    (this as App).appContainer
+
+fun Activity.getAppContainer(): AppContainer =
+    (application as App).appContainer

@@ -28,6 +28,7 @@ import io.objectbox.kotlin.boxFor
 import io.objectbox.meshsync.android.AndroidMeshSync
 import io.objectbox.sync.Sync
 import io.objectbox.sync.SyncChange
+import io.objectbox.sync.SyncClient
 import io.objectbox.sync.SyncCredentials
 import io.objectbox.sync.listener.SyncLoginListener
 
@@ -35,21 +36,26 @@ import io.objectbox.sync.listener.SyncLoginListener
  * Singleton to keep BoxStore reference and provide current list of Notes Objects.
  * Inserts demo data if no Objects are stored.
  */
-object ObjectBox {
+class ObjectBox(private val context: Context) {
 
-    private const val USE_MESH_SYNC = true
+    companion object {
+        const val USE_MESH_SYNC = true
 
-    private const val SYNC_SERVER_URL = "ws://10.0.2.2"
+        private const val SYNC_SERVER_URL = "ws://10.0.2.2"
+    }
 
     private lateinit var boxStore: BoxStore
+    var syncClient: SyncClient? = null
+        private set
+
     private val syncChangesLiveData = MutableLiveData<List<SyncChange>>()
 
-    fun init(context: Context) {
+    fun initStore() {
         val storeBuilder = MyObjectBox.builder()
             .name("tasks-synced")
             .validateOnOpen(ValidateOnOpenModePages.WithLeaves) // Additional DB page validation
             .validateOnOpenPageLimit(20)
-            .androidContext(context.applicationContext)
+            .androidContext(context)
         boxStore = try {
             storeBuilder.build()
         } catch (e: FileCorruptException) {
@@ -60,17 +66,36 @@ object ObjectBox {
             storeBuilder.build()
         }
 
-        Log.i(App.TAG, "Starting client with: $SYNC_SERVER_URL")
-        val loginListener = object : SyncLoginListener {
-            override fun onLoggedIn() {
-                Log.i(App.TAG, "logged in")
-            }
+        initSyncClient()
 
-            override fun onLoginFailed(syncLoginCode: Long) {}
+        // Enable ObjectBox Admin on debug builds.
+        // https://docs.objectbox.io/data-browser
+        if (BuildConfig.DEBUG) {
+            Log.i(
+                App.TAG,
+                "Using ObjectBox ${BoxStore.getVersion()} (${BoxStore.getVersionNative()})"
+            )
+            Admin(boxStore).start(context)
+        }
+    }
+
+    private val loginListener = object : SyncLoginListener {
+        override fun onLoggedIn() {
+            Log.i(App.TAG, "Client logged in")
         }
 
-        // Note: given BoxStore keeps a reference to Sync client
-        Sync.client(boxStore)
+        override fun onLoginFailed(syncLoginCode: Long) {}
+    }
+
+    fun initSyncClient() {
+        if (syncClient != null) {
+            return
+        }
+
+        Log.i(App.TAG, "Starting client with url = $SYNC_SERVER_URL")
+
+        // Note: the BoxStore instance also keeps a reference to the Sync client
+        syncClient = Sync.client(boxStore)
             .url(SYNC_SERVER_URL)
             .credentials(SyncCredentials.none())
             .changeListener { syncChanges: Array<SyncChange> ->
@@ -86,16 +111,6 @@ object ObjectBox {
                 }
             }
             .buildAndStart()
-
-        // Enable ObjectBox Admin on debug builds.
-        // https://docs.objectbox.io/data-browser
-        if (BuildConfig.DEBUG) {
-            Log.i(
-                App.TAG,
-                "Using ObjectBox ${BoxStore.getVersion()} (${BoxStore.getVersionNative()})"
-            )
-            Admin(boxStore).start(context.applicationContext)
-        }
     }
 
     fun getTasksLiveData(filter: TasksFilter): LiveData<List<Task?>> {

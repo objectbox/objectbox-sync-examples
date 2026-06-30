@@ -22,11 +22,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import io.objectbox.example.sync.databinding.ActivityTasksBinding
+import io.objectbox.meshsync.android.MeshSyncPermissions
 
 class TasksActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTasksBinding
     private val model by viewModels<TasksViewModel>()
+    private val meshSyncPermissions = MeshSyncPermissions(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +67,29 @@ class TasksActivity : AppCompatActivity() {
             // Clear text and error
             binding.textInputLayout.error = null
             binding.textInputLayout.editText!!.setText(null)
-            ObjectBox.addTask(text.toString())
+            model.objectBox.addTask(text.toString())
         }
+
+        // When using mesh sync, request permissions (if any are missing).
+        // Note this is a simple example, see Android docs on how to properly
+        // request permissions (and handle rejections or show rationale UI).
+        // https://developer.android.com/training/permissions/requesting
+        if (ObjectBox.USE_MESH_SYNC) {
+            meshSyncPermissions.requestIfMissing()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        meshSyncPermissions.notifyMeshIfPermissionsGranted(
+            requestCode,
+            model.objectBox.syncClient?.mesh
+        )
     }
 
     private fun addTab(tabs: TabLayout, lastFilter: TasksFilter?, filter: TasksFilter) {
@@ -78,11 +101,11 @@ class TasksActivity : AppCompatActivity() {
 
     private val itemClickListener = object : TasksAdapter.ClickListener {
         override fun onCheckedClick(task: Task, isChecked: Boolean) {
-            ObjectBox.changeTaskDone(task, isChecked)
+            model.objectBox.changeTaskDone(task, isChecked)
         }
 
         override fun onRemoveClick(task: Task) {
-            ObjectBox.removeTask(task.id)
+            model.objectBox.removeTask(task.id)
         }
     }
 }

@@ -24,13 +24,15 @@ import androidx.lifecycle.switchMap
 
 class TasksViewModel(application: Application) : AndroidViewModel(application) {
 
+    val objectBox = application.getAppContainer().objectBox
+
     val filter = MutableLiveData<TasksFilter>()
     val filteredTasks: LiveData<List<Task?>>
 
     init {
         filter.value = TasksFilter.ALL
         filteredTasks = filter.switchMap { filter: TasksFilter ->
-            ObjectBox.getTasksLiveData(filter)
+            objectBox.getTasksLiveData(filter)
         }
     }
 }
