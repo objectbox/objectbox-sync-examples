@@ -4,7 +4,7 @@ objectbox = "5.4.2"
 # Find compatible versions at https://kotlinlang.org/docs/gradle-configure-project.html#apply-the-plugin
 agp = "8.10.1"
 # Note: when updating make sure to update coroutines dependency to be compatible
-kotlin = "2.2.0"
+kotlin = "2.4.0"
 
 activityKtx = "1.10.1"
 appcompat = "1.7.1"
