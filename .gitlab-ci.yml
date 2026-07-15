@@ -49,7 +49,7 @@ client-android:
 
 client-swift:
   stage: build
-  tags: [mac, xcode]
+  tags: [ mac, xcode ]
   script:
     - cd tasks/client-swift
     # A simulator named "iPhone 11" is configured on the build machine
@@ -65,7 +65,7 @@ client-swift:
 # Not using matrix build for nicer job names
 .client-cpp-docker:
   extends: .client-cpp
-  tags: [ x64, docker]
+  tags: [ docker, linux, x64 ]
 
 client-cpp-gcc:
   extends: .client-cpp-docker
@@ -81,7 +81,7 @@ client-cpp-ubuntu24:
 
 client-cpp-mac:
   extends: .client-cpp
-  tags: [mac, x64, xcode]
+  tags: [ mac, xcode ]
 
 client-cpp-win:
   extends: .client-cpp
