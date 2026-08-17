@@ -17,10 +17,11 @@ stages:
 client-java:
   stage: build
   tags: [ docker, linux, x64 ]
-  image: objectboxio/buildenv-android:2024-12-09 # Includes JDK 21, Android build-tools/35.0.0 and platforms/android-35
+  image: objectboxio/buildenv-android:2026-05-12 # With JDK 21, Android build-tools;36.0.0 and platforms;android-35 pre-installed
   script:
     - cd tasks/client-java
     - echo "➡️ Building client-java with Gradle..."
+    - ./gradlew -version
     - ./gradlew clean build
     - echo "✅ Building client-java with Gradle...DONE"
     - echo "➡️ Building client-java with Maven..."
@@ -37,13 +38,15 @@ client-android:
   script:
     - echo "➡️ Building client-android-java..."
     - cd tasks/client-android-java
-    - ./gradlew clean assembleDebug # Only assemble debug variant
+    - ./gradlew -version
+    - ./gradlew clean assembleDebug lintDebug # Only assemble debug variant
     - echo "✅ Building client-android-java...DONE"
     - cd ../..
 
     - echo "➡️ Building client-android-kotlin..."
     - cd tasks/client-android-kotlin
-    - ./gradlew clean assembleDebug # Only assemble debug variant
+    - ./gradlew -version
+    - ./gradlew clean assembleDebug lintDebug # Only assemble debug variant
     - echo "✅ Building client-android-kotlin...DONE"
     - cd ../..
 

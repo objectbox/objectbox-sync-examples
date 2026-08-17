@@ -2,9 +2,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     // For ObjectBox: apply the kapt and ObjectBox plugin
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.android.kapt)
     alias(libs.plugins.objectbox)
 }
 
@@ -31,12 +30,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    lint {
+        printTextReport = true // For CI
+    }
 }
 
 kotlin {
     compilerOptions {
-        // While ObjectBox only requires Java 8, this is deprecated and
-        // new Android projects should use 11.
+        // Match android.compilerOptions
         jvmTarget = JvmTarget.JVM_11
     }
 }

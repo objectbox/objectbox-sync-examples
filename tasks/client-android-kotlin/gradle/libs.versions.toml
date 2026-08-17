@@ -1,10 +1,9 @@
 [versions]
 objectbox = "5.4.2"
 
-# Find compatible versions at https://kotlinlang.org/docs/gradle-configure-project.html#apply-the-plugin
-agp = "8.10.1"
-# Note: when updating make sure to update coroutines dependency to be compatible
-kotlin = "2.2.0"
+# Android plugin 9 includes Kotlin 2.2.10
+# https://developer.android.com/build/releases/agp-9-0-0-release-notes#runtime-dependency-on-kotlin-gradle-plugin
+agp = "9.3.0"
 
 activityKtx = "1.10.1"
 appcompat = "1.7.1"
@@ -12,10 +11,10 @@ constraintlayout = "2.2.1"
 material = "1.12.0"
 lifecycleKtx = "2.9.2"
 recyclerview = "1.4.0"
-versions = "0.52.0" # https://github.com/ben-manes/gradle-versions-plugin/releases
 
 [libraries]
 objectbox-android = { module = "io.objectbox:objectbox-sync-android", version.ref = "objectbox" }
+objectbox-kotlin = { module = "io.objectbox:objectbox-kotlin", version.ref = "objectbox" }
 # ObjectBox with Admin web app for debugging
 # https://docs.objectbox.io/data-browser
 objectbox-android-admin = { module = "io.objectbox:objectbox-sync-android-objectbrowser", version.ref = "objectbox" }
@@ -30,8 +29,6 @@ material = { group = "com.google.android.material", name = "material", version.r
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+android-kapt = { id = "com.android.legacy-kapt", version.ref = "agp" }
 # For ObjectBox: use the Sync variant of the plugin
 objectbox = { id = "io.objectbox.sync", version.ref = "objectbox" }
-versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
