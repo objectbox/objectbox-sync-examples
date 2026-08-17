@@ -31,6 +31,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    lint {
+        printTextReport = true // For CI
+    }
 }
 
 kotlin {
