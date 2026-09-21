@@ -41,7 +41,18 @@ kotlin {
     }
 }
 
+// Temporary (mesh sync interop testing): the ObjectBox libraries are resolved from the internal
+// snapshot registry (see settings.gradle.kts), so do not let Gradle cache them.
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
+}
+
 dependencies {
+    // Temporary (mesh sync interop testing): pin objectbox-java/-kotlin to the snapshot version.
+    // The ObjectBox Gradle plugin only adds them at its own (release) version if not declared here.
+    implementation(libs.objectbox.java)
+    implementation(libs.objectbox.kotlin)
+
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

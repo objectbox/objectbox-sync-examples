@@ -1,5 +1,10 @@
 [versions]
+# Version of the ObjectBox Gradle plugin (Maven Central)
 objectbox = "6.0.0-beta"
+# Temporary (mesh sync interop testing): version of the ObjectBox libraries, published as snapshots
+# to the internal ObjectBox Maven registry (see settings.gradle.kts). Revert to "objectbox" once a
+# release with the mesh sync API is available on Maven Central.
+objectbox-snapshot = "6.0.0-devdev-SNAPSHOT"
 
 # Find compatible versions at https://kotlinlang.org/docs/gradle-configure-project.html#apply-the-plugin
 agp = "8.10.1"
@@ -15,14 +20,20 @@ recyclerview = "1.4.0"
 versions = "0.52.0" # https://github.com/ben-manes/gradle-versions-plugin/releases
 
 [libraries]
-objectbox-android = { module = "io.objectbox:objectbox-sync-android", version.ref = "objectbox" }
+objectbox-android = { module = "io.objectbox:objectbox-sync-android", version.ref = "objectbox-snapshot" }
 # ObjectBox with Admin web app for debugging
 # https://docs.objectbox.io/data-browser
-objectbox-android-admin = { module = "io.objectbox:objectbox-sync-android-objectbrowser", version.ref = "objectbox" }
+objectbox-android-admin = { module = "io.objectbox:objectbox-sync-android-objectbrowser", version.ref = "objectbox-snapshot" }
 
 # For ObjectBox Mesh Sync
-objectbox-meshsync-android = { module = "io.objectbox:objectbox-meshsync-android", version.ref = "objectbox" }
-objectbox-meshsync-android-admin = { module = "io.objectbox:objectbox-meshsync-android-admin", version.ref = "objectbox" }
+objectbox-meshsync-android = { module = "io.objectbox:objectbox-meshsync-android", version.ref = "objectbox-snapshot" }
+objectbox-meshsync-android-admin = { module = "io.objectbox:objectbox-meshsync-android-admin", version.ref = "objectbox-snapshot" }
+
+# Temporary (mesh sync interop testing): the ObjectBox Gradle plugin adds objectbox-java and
+# objectbox-kotlin at the plugin version, but only if the project does not declare them itself.
+# Declaring them here pins them to the snapshot version as well.
+objectbox-java = { module = "io.objectbox:objectbox-java", version.ref = "objectbox-snapshot" }
+objectbox-kotlin = { module = "io.objectbox:objectbox-kotlin", version.ref = "objectbox-snapshot" }
 
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
