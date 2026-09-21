@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15FE0001E300000000000001 /* ObjectBoxMeshSync in Frameworks */ = {isa = PBXBuildFile; productRef = 15FE0003E300000000000003 /* ObjectBoxMeshSync */; };
 		153A1E4F2E3074520032373A /* ObjectBox-Sync.xcframework in Frameworks */ = {isa = PBXBuildFile; productRef = 153A1E4E2E3074520032373A /* ObjectBox-Sync.xcframework */; };
 		153A1E522E30745A0032373A /* ObjectBox-Sync.xcframework in Frameworks */ = {isa = PBXBuildFile; productRef = 153A1E512E30745A0032373A /* ObjectBox-Sync.xcframework */; };
 		15E594A52DEDB56C003C7EC1 /* Task+Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E5949B2DEDB56C003C7EC1 /* Task+Sample.swift */; };
@@ -57,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				153A1E4F2E3074520032373A /* ObjectBox-Sync.xcframework in Frameworks */,
+				15FE0001E300000000000001 /* ObjectBoxMeshSync in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +158,10 @@
 				15E593C12DEDB1A5003C7EC1 /* client-swift-macos */,
 			);
 			name = "client-swift-macos";
+			packageProductDependencies = (
+				153A1E4E2E3074520032373A /* ObjectBox-Sync.xcframework */,
+				15FE0003E300000000000003 /* ObjectBoxMeshSync */,
+			);
 			productName = "client-swift-macos";
 			productReference = 15E593BF2DEDB1A5003C7EC1 /* client-swift-macos.app */;
 			productType = "com.apple.product-type.application";
@@ -208,7 +214,7 @@
 			mainGroup = 15E593B42DEDB194003C7EC1;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				153A1E4D2E3074520032373A /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */,
+				15FE0002E300000000000002 /* XCLocalSwiftPackageReference "local-packages/objectbox-swift-spm" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 15E593C02DEDB1A5003C7EC1 /* Products */;
@@ -342,7 +348,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Mesh sync uses Bluetooth to find nearby devices.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Mesh sync discovers nearby devices on the local network.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -418,7 +426,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Mesh sync uses Bluetooth to find nearby devices.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Mesh sync discovers nearby devices on the local network.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -641,27 +651,28 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		153A1E4D2E3074520032373A /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/objectbox/objectbox-swift-spm";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.3.0;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		15FE0002E300000000000002 /* XCLocalSwiftPackageReference "local-packages/objectbox-swift-spm" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "local-packages/objectbox-swift-spm";
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		153A1E4E2E3074520032373A /* ObjectBox-Sync.xcframework */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 153A1E4D2E3074520032373A /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */;
+			package = 15FE0002E300000000000002 /* XCLocalSwiftPackageReference "local-packages/objectbox-swift-spm" */;
 			productName = "ObjectBox-Sync.xcframework";
 		};
 		153A1E512E30745A0032373A /* ObjectBox-Sync.xcframework */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 153A1E4D2E3074520032373A /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */;
+			package = 15FE0002E300000000000002 /* XCLocalSwiftPackageReference "local-packages/objectbox-swift-spm" */;
 			productName = "ObjectBox-Sync.xcframework";
+		};
+		15FE0003E300000000000003 /* ObjectBoxMeshSync */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15FE0002E300000000000002 /* XCLocalSwiftPackageReference "local-packages/objectbox-swift-spm" */;
+			productName = ObjectBoxMeshSync;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

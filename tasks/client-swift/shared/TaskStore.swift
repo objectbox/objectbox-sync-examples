@@ -17,6 +17,12 @@
 import ObjectBox
 import Foundation
 import os
+#if os(macOS)
+// Experimental mesh sync (peer-to-peer, no server): macOS only, because the local SwiftPM override in
+// local-packages/objectbox-swift-spm provides a macOS-only, mesh-enabled ObjectBox framework plus this
+// Nearby-based transport add-on. See that directory's README.md.
+import ObjectBoxMeshSync
+#endif
 
 class TaskStore: ObservableObject {
     
@@ -25,6 +31,12 @@ class TaskStore: ObservableObject {
     
     private var tasksBox: Box<Task>
     private var tasksBoxObserver: Observer?
+#if os(macOS)
+    // Must match the mesh ID of the other apps in this example (the Android app uses the same one);
+    // nodes with a different mesh ID ignore each other.
+    private static let meshId = "io.objectbox.example.sync.tasks"
+    private var meshLogTimer: Timer?
+#endif
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
         category: String(describing: TaskStore.self)
@@ -74,12 +86,44 @@ class TaskStore: ObservableObject {
         let configuration = Sync.Configuration(store: store, url: serverURL)
         configuration.credentials = [SyncCredentials.makeNone()]
 
+#if os(macOS)
+        // Attach a peer-to-peer mesh sync over Google Nearby, restricted to Wi-Fi LAN (no Bluetooth).
+        // The server at serverURL stays unreachable on purpose, so anything that arrives here came in
+        // over the mesh. The mesh starts and stops together with the sync client.
+        configuration.mesh = try! AppleMeshSync.createConfig(meshId: Self.meshId, mediums: [.wifiLAN])
+#endif
+
         let client = try! Sync.makeClient(configuration: configuration)
         try! client.start()
 
         client.connectionListener = MyConnectionListener(logger: logger)
         client.changeListener = MyChangeListener(logger: logger)
+
+#if os(macOS)
+        startMeshLogging(client: client)
+#endif
     }
+
+#if os(macOS)
+    /// Logs the mesh state, connected peers and a few counters every 5 seconds; all messages are
+    /// prefixed with "Mesh:" (and logged publicly) so they can be filtered in Console/`log show`.
+    private func startMeshLogging(client: SyncClient) {
+        guard let mesh = client.mesh else {
+            logger.error("Mesh: no mesh attached to the sync client")
+            return
+        }
+        logger.info("Mesh: started, meshId=\(Self.meshId, privacy: .public)")
+        let timer = Timer(timeInterval: 5, repeats: true) { [logger] _ in
+            let peers = mesh.connectedPeerCount
+            let discovered = (try? mesh.statsValue(.peersDiscovered)) ?? 0
+            let sent = (try? mesh.statsValue(.txLogsSent)) ?? 0
+            let applied = (try? mesh.statsValue(.txLogsApplied)) ?? 0
+            logger.info("Mesh: state=\(mesh.stateString, privacy: .public) peers=\(peers, privacy: .public) peersDiscovered=\(discovered, privacy: .public) txLogsSent=\(sent, privacy: .public) txLogsApplied=\(applied, privacy: .public)")
+        }
+        RunLoop.main.add(timer, forMode: .common)
+        meshLogTimer = timer
+    }
+#endif
     
     func putTask(task: Task) {
         logger.info("Adding task: \(task)")
@@ -99,6 +143,9 @@ class TaskStore: ObservableObject {
     
     deinit {
         tasksBoxObserver = nil
+#if os(macOS)
+        meshLogTimer?.invalidate()
+#endif
     }
 }
 
