@@ -90,7 +90,9 @@ class TaskStore: ObservableObject {
         // Attach a peer-to-peer mesh sync over Google Nearby, restricted to Wi-Fi LAN (no Bluetooth).
         // The server at serverURL stays unreachable on purpose, so anything that arrives here came in
         // over the mesh. The mesh starts and stops together with the sync client.
-        configuration.mesh = try! AppleMeshSync.createConfig(meshId: Self.meshId, mediums: [.wifiLAN])
+        let meshConfig = try! AppleMeshSync.createConfig(meshId: Self.meshId)
+        meshConfig.nearbyMediums = [.wifiLAN]
+        configuration.mesh = meshConfig
 #endif
 
         let client = try! Sync.makeClient(configuration: configuration)

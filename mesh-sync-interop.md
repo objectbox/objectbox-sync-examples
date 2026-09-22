@@ -125,7 +125,10 @@ rm -rf "$OUT"
 xcodebuild -create-xcframework -framework build/mesh-interop/Build/Products/Release/ObjectBox.framework -output "$OUT"
 ```
 
-The xcframework is git-ignored; rebuild it whenever the framework changes. The local package
+The xcframework is git-ignored; rebuild it whenever the framework changes. After such a rebuild, also clear
+the app's cached copies before building the app, otherwise the Swift compiler keeps using the old module
+(`build/Build/Products/Debug/ObjectBox.framework`, `build/Build/Products/Debug/PackageFrameworks`,
+`build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules`, `build/ModuleCache.noindex`). The local package
 (`local-packages/objectbox-swift-spm`, see its README) replaces the remote `objectbox-swift-spm`
 dependency in the Xcode project, so no ObjectBox release is involved on this side. Because the override is
 macOS only, the iOS target of the example does not build while it is in place.
