@@ -35,7 +35,10 @@ let package = Package(
         // So that "import ObjectBox" inside the transport sources resolves
         .target(name: "ObjectBox-Sync.xcframework"),
       ],
-      path: "Sources/ObjectBoxMeshSync"
+      path: "Sources/ObjectBoxMeshSync",
+      // The distributed ObjectBox Swift package gates these sources behind its "MeshSync" trait; this local override has
+      // Nearby unconditionally, so define the condition (see MeshSyncTrait.swift in the sources)
+      swiftSettings: [.define("MeshSync")]
     ),
   ]
 )
