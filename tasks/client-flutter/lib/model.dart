@@ -17,6 +17,7 @@ class Task {
   @Property(type: PropertyType.date)
   DateTime dateFinished;
 
+  @SyncClock()
   int syncClock;
 
   /// Create task with the given text at the current time.
