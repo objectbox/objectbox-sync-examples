@@ -1,6 +1,6 @@
-import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -45,13 +45,13 @@ class ObjectBox {
       "obx-demo-sync",
     );
 
-    // Print versions before opening the store (which might fail)
-    log('Database version: ${Store.databaseVersion()}', name: 'ObjectBox');
-    log('Database directory: $directory', name: 'ObjectBox');
-    log(
-      'Sync protocol version: ${SyncClient.protocolVersion()}',
-      name: 'ObjectBox',
-    );
+    // Use debugPrint instead of log so it shows up for iOS/macOS
+    if (kDebugMode) {
+      // Print versions before opening the store (which might fail)
+      debugPrint('Database version: ${Store.databaseVersion()}');
+      debugPrint('Database directory: $directory');
+      debugPrint('Sync protocol version: ${SyncClient.protocolVersion()}');
+    }
 
     // Note: set macosApplicationGroup for sandboxed macOS applications, see the
     // Store constructor documentation for details.
