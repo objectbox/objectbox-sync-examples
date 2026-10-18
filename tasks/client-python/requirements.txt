@@ -1,6 +1,6 @@
 # objectbox-sync: the ObjectBox Python API with the Sync variant of the ObjectBox library
 # (install it instead of the package objectbox)
-# TODO: until 5.0.0b1 is published on PyPI, it is installed from TestPyPI; remove these two lines after the release
+# TODO: until 5.0.0 is published on PyPI, the beta is installed from TestPyPI; remove these two lines after the release
 --index-url https://test.pypi.org/simple/
 --extra-index-url https://pypi.org/simple/
-objectbox-sync==5.0.0b1
+objectbox-sync==5.0.0b2

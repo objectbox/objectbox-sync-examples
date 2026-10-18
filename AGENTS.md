@@ -20,7 +20,7 @@ entity ID `1:6645479796472661392`). Each project keeps its own copy of the model
   C++/Python: `objectbox-model.json`; Swift: `model-client-swift-{ios,macos}.json`
 
 Sync matches entities and properties by UID, not by name: names may differ between clients (e.g. `date_created` in
-C++/Python, `dateCreated` in the server copy). Do not "fix" names to match; keep the IDs and UIDs identical.
+C++, `dateCreated` in the server copy). Do not "fix" names to match; keep the IDs and UIDs identical.
 
 Changing the model in one place means updating it consistently in the server copies and all other clients.
 Generated binding code is committed (e.g. `client-go/model/*.obx.go`, `client-cpp/tasklist.obx.*`,
@@ -73,9 +73,11 @@ then run two clients with separate databases, e.g. `main.py --directory a` and `
 
 ## client-python: temporary state
 
-- `requirements.txt` installs `objectbox-sync==5.0.0b1` from TestPyPI (index lines marked TODO) until it is on PyPI.
-- Its `objectbox-model.json` is client-cpp's with `"0:0"` instead of `""` for `lastIndexId`/`lastRelationId`:
-  objectbox-python 5.0.0b1 fails to parse the empty value (fixed after 5.0.0b1). Keep this when copying model files.
+- `requirements.txt` installs `objectbox-sync==5.0.0b2` from TestPyPI (index lines marked TODO) until 5.0.0 is on
+  PyPI.
+- Its `objectbox-model.json` is a copy of the server's (`tasks/server-docker`): objectbox-python stores property names
+  in camelCase since 5.0 (`date_created` is `dateCreated`), so it matches the server's names, and opening the store
+  leaves the file unchanged.
 
 ## Versions
 
