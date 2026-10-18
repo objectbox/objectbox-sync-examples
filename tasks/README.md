@@ -46,6 +46,8 @@ Combine the Sync Server with any of the Sync Client examples:
 
 - [client-cpp](./client-cpp/): a C++ command-line app ([README.md](./client-cpp/README.md))
 
+- [client-python](./client-python/): a Python command-line app ([README.md](./client-python/README.md))
+
 You can run multiple clients concurrently and on any number of devices.
 
 ## A few notes on the Data Model

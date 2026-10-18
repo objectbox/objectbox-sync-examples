@@ -59,6 +59,17 @@ client-swift:
     - xcodebuild clean build -scheme client-swift-ios -destination 'platform=iOS Simulator,name=iPhone 11'
     - xcodebuild build -scheme client-swift-macos -destination 'platform=macOS'
 
+client-python:
+  stage: build
+  tags: [ docker, linux, x64 ]
+  image: python:3.12
+  script:
+    - cd tasks/client-python
+    - python -m venv .venv
+    - .venv/bin/pip install -r requirements.txt
+    # No Sync server in CI: the client keeps trying to connect in the background
+    - printf "new Buy bananas\nls\nexit\n" | .venv/bin/python main.py
+
 .client-cpp:
   stage: build
   script:
