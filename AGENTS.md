@@ -19,6 +19,9 @@ entity ID `1:6645479796472661392`). Each project keeps its own copy of the model
 - Java/Android: `app/objectbox-models/default.json`; Flutter: `lib/objectbox-model.json`; Go: `model/objectbox-model.json`;
   C++/Python: `objectbox-model.json`; Swift: `model-client-swift-{ios,macos}.json`
 
+Sync matches entities and properties by UID, not by name: names may differ between clients (e.g. `date_created` in
+C++/Python, `dateCreated` in the server copy). Do not "fix" names to match; keep the IDs and UIDs identical.
+
 Changing the model in one place means updating it consistently in the server copies and all other clients.
 Generated binding code is committed (e.g. `client-go/model/*.obx.go`, `client-cpp/tasklist.obx.*`,
 `client-flutter/lib/objectbox.g.dart`, `client-swift/generated/`) and must be regenerated after model changes
@@ -26,7 +29,7 @@ Generated binding code is committed (e.g. `client-go/model/*.obx.go`, `client-cp
 
 Cross-client conventions: entities are marked as sync entities with a `SyncClock` property (conflict resolution);
 an unfinished task has its finish date set to 0 (epoch start). Command-line clients (Java, Go, C++, Python) share the
-same shell commands: `ls [-a]`, `new <text>`, `done <id>`, `exit`, `help`.
+same shell commands: `ls [-a]`, `new <text>`, `done <id>`, `exit`, `help` (`client-java` also has `rm <id>`).
 
 ## Sync Server
 
@@ -36,10 +39,18 @@ same shell commands: `ls [-a]`, `new <text>`, `done <id>`, `exit`, `help`.
   (`unsecuredNoAuthentication: true`; rename `_debug` to `debug` for debug logs).
 - `tasks/server-mongo-compose`: `docker compose up` for the Sync Server plus MongoDB (port 27017).
 - Clients connect to `ws://127.0.0.1:9999`; Android emulators use `10.0.2.2` for the host.
+- Without trial activation, the server rejects every write: clients log `Received REJECT_TX ... with code 2`, the server
+  `State condition failed in updatePreviousTxLog:61: trial`.
+- **Only the user may activate the trial; agents must not.** Activation (Admin page `#/sync-trial`) is a legal consent:
+  agreeing to the ObjectBox Trial License and Privacy Policies, stating the evaluation role, and registering or logging
+  in. Do not fill in the form or call its endpoints; ask the user to activate it, or to provide a non-trial server image.
+  The trial applies per dataset (30 days each): a fresh server database (e.g. after deleting `./objectbox` or with a new
+  data directory) needs activation again, so prefer reusing an activated server over starting fresh ones.
 
-## Build / run commands (as used in CI, `.gitlab-ci.yml`)
+## Build / run commands
 
-Run from the respective project directory:
+Run from the respective project directory (GitLab CI, `.gitlab-ci.yml`, has jobs for client-java, the Android clients,
+client-swift, client-cpp and client-python):
 
 - `client-java`: `./gradlew clean build`, `./gradlew run`; Maven: `./mvnw compile`, `./mvnw compile exec:java`
 - `client-android-java`, `client-android-kotlin`: `./gradlew clean assembleDebug lintDebug`
@@ -56,8 +67,23 @@ There are no unit tests. CI smoke-tests the CLI clients without a server by pipi
 `printf "new Buy bananas\nls\nexit\n" | .venv/bin/python main.py` (the client keeps retrying the connection in the
 background, which is fine).
 
+CI never syncs data. To test Sync end to end: start the server (with the trial activated by the user, see above),
+then run two clients with separate databases, e.g. `main.py --directory a` and `main.py --directory b` (C++: `-d dir`);
+`new` or `done` on one makes the other print "Task list has changed (synced)" with the updated list.
+
+## client-python: temporary state
+
+- `requirements.txt` installs `objectbox-sync==5.0.0b1` from TestPyPI (index lines marked TODO) until it is on PyPI.
+- Its `objectbox-model.json` is client-cpp's with `"0:0"` instead of `""` for `lastIndexId`/`lastRelationId`:
+  objectbox-python 5.0.0b1 fails to parse the empty value (fixed after 5.0.0b1). Keep this when copying model files.
+
 ## Versions
 
 `scripts/java-set-version.sh <version>` bumps the ObjectBox version for all Java-based clients
 (`gradle/libs.versions.toml` in client-java, client-android-java, client-android-kotlin and `client-java/pom.xml`)
 and commits the change.
+
+## Commits
+
+Prefix commit messages with the project or area, e.g. `client-flutter: ...`, `client-android-*: ...`, `CI: ...`.
+The remote is `github`.
