@@ -71,10 +71,9 @@ CI never syncs data. To test Sync end to end: start the server (with the trial a
 then run two clients with separate databases, e.g. `main.py --directory a` and `main.py --directory b` (C++: `-d dir`);
 `new` or `done` on one makes the other print "Task list has changed (synced)" with the updated list.
 
-## client-python: temporary state
+## client-python
 
-- `requirements.txt` installs `objectbox-sync==5.0.0b2` from TestPyPI (index lines marked TODO) until 5.0.0 is on
-  PyPI.
+- `requirements.txt` pins `objectbox-sync` (the Sync variant; install it instead of `objectbox`).
 - Its `objectbox-model.json` is a copy of the server's (`tasks/server-docker`): objectbox-python stores property names
   in camelCase since 5.0 (`date_created` is `dateCreated`), so it matches the server's names, and opening the store
   leaves the file unchanged.
