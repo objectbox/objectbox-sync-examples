@@ -1,4 +1,3 @@
--if class androidx.credentials.CredentialManager
--keep class androidx.credentials.playservices.** {
-  *;
-}
+# Add project specific ProGuard rules here.
+# R8/ProGuard rules for ObjectBox are included in the Java and Android
+# dependencies, no additional configuration is required.
